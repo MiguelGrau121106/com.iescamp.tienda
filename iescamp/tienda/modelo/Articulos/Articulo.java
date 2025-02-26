@@ -14,6 +14,10 @@ public class Articulo {
     private double precio;
     private String marca;
     private String descripcion;
+
+
+
+
     private String color;
 
 
@@ -113,7 +117,9 @@ public class Articulo {
         this.material = material;
         this.cod_art = cod_art;
         this.activo = activo;
+
         this.color = color;
+
 
         this.imagen = imagen;
         this.nombre = nombre;

@@ -5,9 +5,12 @@ import java.util.Objects;
 
 public class LineaPedido {
 
+
+
     private int idLinea;
     private Articulo articulo;
     private int cantidad;
+    private Pedido pedido;
 
 
 
@@ -35,12 +38,23 @@ public class LineaPedido {
         this.cantidad = cantidad;
     }
 
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
     @Override
     public String toString() {
         return "LineaPedido{" +
                 "idLinea=" + idLinea +
                 ", articulo=" + articulo +
                 ", cantidad=" + cantidad +
+
+                ", pedido=" + pedido +
+
                 '}';
     }
 
@@ -50,20 +64,21 @@ public class LineaPedido {
         if (o == null || getClass() != o.getClass()) return false;
 
         LineaPedido that = (LineaPedido) o;
-        return idLinea == that.idLinea && cantidad == that.cantidad && Objects.equals(articulo, that.articulo);
+        return idLinea == that.idLinea && cantidad == that.cantidad && Objects.equals(articulo, that.articulo) && Objects.equals(pedido, that.pedido);
+
     }
 
     @Override
     public int hashCode() {
-        int result = idLinea;
-        result = 31 * result + Objects.hashCode(articulo);
-        result = 31 * result + cantidad;
-        return result;
+
+        return Objects.hash(idLinea, articulo, cantidad, pedido);
     }
 
-    public LineaPedido(int idLinea, Articulo articulo, int cantidad) {
+    public LineaPedido(int idLinea, Articulo articulo, int cantidad, Pedido pedido) {
         this.idLinea = idLinea;
         this.articulo = articulo;
         this.cantidad = cantidad;
+        this.pedido = pedido;
+
     }
 }

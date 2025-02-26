@@ -11,33 +11,16 @@ import java.util.Objects;
 public class Pedido {
     private int NumeroPedido;
     private LocalDate FechaPedido;
-    private String estado;
+
+    private EstadoPedido estado;
     private String DireccionEntrega;
+    private int metodoPago;
+
     private ArrayList<LineaPedido> lineasPedido = new ArrayList<>();
     private Cliente cliente;
 
     // getter y setter
 
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public void setLineasPedido(ArrayList<LineaPedido> lineasPedido) {
-        this.lineasPedido = lineasPedido;
-    }
-
-    public ArrayList<LineaPedido> getLineasPedido() {
-        return lineasPedido;
-    }
-
-    public void AddLineaPedido(LineaPedido lineaPedido){
-        lineasPedido.add(lineaPedido);
-    }
 
     public int getNumeroPedido() {
         return NumeroPedido;
@@ -55,11 +38,13 @@ public class Pedido {
         FechaPedido = fechaPedido;
     }
 
-    public String getEstado() {
+
+    public EstadoPedido getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoPedido estado) {
+
         this.estado = estado;
     }
 
@@ -71,29 +56,63 @@ public class Pedido {
         DireccionEntrega = direccionEntrega;
     }
 
+    public int getMetodoPago() {
+        return metodoPago;
+    }
+
+    public void setMetodoPago(int metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
+    public ArrayList<LineaPedido> getLineasPedido() {
+        return lineasPedido;
+    }
+
+    public void setLineasPedido(ArrayList<LineaPedido> lineasPedido) {
+        this.lineasPedido = lineasPedido;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    //metodo adicional
+    public void addLineaPedido(LineaPedido lineaPedido) {
+        lineasPedido.add(lineaPedido);
+    }
+
     // equals
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        Pedido pedido = (Pedido) object;
-        return NumeroPedido == pedido.NumeroPedido && Objects.equals(FechaPedido, pedido.FechaPedido) && Objects.equals(estado, pedido.estado) && Objects.equals(DireccionEntrega, pedido.DireccionEntrega);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pedido pedido = (Pedido) o;
+        return NumeroPedido == pedido.NumeroPedido && metodoPago == pedido.metodoPago && Objects.equals(FechaPedido, pedido.FechaPedido) && estado == pedido.estado && Objects.equals(DireccionEntrega, pedido.DireccionEntrega) && Objects.equals(lineasPedido, pedido.lineasPedido) && Objects.equals(cliente, pedido.cliente);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(NumeroPedido, FechaPedido, estado, DireccionEntrega);
+
+        return Objects.hash(NumeroPedido, FechaPedido, estado, DireccionEntrega, metodoPago, lineasPedido, cliente);
     }
+
 
     // constructor
 
+    public Pedido(int numeroPedido, LocalDate fechaPedido, EstadoPedido estado, String direccionEntrega, int metodoPago, ArrayList<LineaPedido> lineasPedido, Cliente cliente) {
 
-    public Pedido(int numeroPedido, LocalDate fechaPedido, String estado, String direccionEntrega, ArrayList<LineaPedido> lineasPedido, Cliente cliente) {
         NumeroPedido = numeroPedido;
         FechaPedido = fechaPedido;
         this.estado = estado;
         DireccionEntrega = direccionEntrega;
+
+        this.metodoPago = metodoPago;
+
         this.lineasPedido = lineasPedido;
         this.cliente = cliente;
     }
@@ -103,8 +122,11 @@ public class Pedido {
         return "Pedido{" +
                 "NumeroPedido=" + NumeroPedido +
                 ", FechaPedido=" + FechaPedido +
-                ", estado='" + estado + '\'' +
+
+                ", estado=" + estado +
                 ", DireccionEntrega='" + DireccionEntrega + '\'' +
+                ", metodoPago=" + metodoPago +
+
                 ", lineasPedido=" + lineasPedido +
                 ", cliente=" + cliente +
                 '}';
@@ -116,6 +138,9 @@ public class Pedido {
                 ", FechaPedido=" + FechaPedido +
                 ", estado='" + estado + '\'' +
                 ", DireccionEntrega='" + DireccionEntrega + '\'' +
+
+                ", metodoPago=" + metodoPago +
+
                 ", lineasPedido=" + lineasPedido +
                 ", cliente=" + cliente +
                 '}';
