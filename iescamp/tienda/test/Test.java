@@ -1,4 +1,4 @@
-package com.iescamp.tienda.test;
+package iescamp.tienda.test;
 
 import com.iescamp.tienda.modelo.Cliente;
 import com.iescamp.tienda.modelo.Empleado;
