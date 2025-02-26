@@ -11,13 +11,16 @@ import java.util.Objects;
 public class Pedido {
     private int NumeroPedido;
     private LocalDate FechaPedido;
+
     private EstadoPedido estado;
     private String DireccionEntrega;
     private int metodoPago;
+
     private ArrayList<LineaPedido> lineasPedido = new ArrayList<>();
     private Cliente cliente;
 
     // getter y setter
+
 
     public int getNumeroPedido() {
         return NumeroPedido;
@@ -35,11 +38,13 @@ public class Pedido {
         FechaPedido = fechaPedido;
     }
 
+
     public EstadoPedido getEstado() {
         return estado;
     }
 
     public void setEstado(EstadoPedido estado) {
+
         this.estado = estado;
     }
 
@@ -87,10 +92,12 @@ public class Pedido {
         if (o == null || getClass() != o.getClass()) return false;
         Pedido pedido = (Pedido) o;
         return NumeroPedido == pedido.NumeroPedido && metodoPago == pedido.metodoPago && Objects.equals(FechaPedido, pedido.FechaPedido) && estado == pedido.estado && Objects.equals(DireccionEntrega, pedido.DireccionEntrega) && Objects.equals(lineasPedido, pedido.lineasPedido) && Objects.equals(cliente, pedido.cliente);
+
     }
 
     @Override
     public int hashCode() {
+
         return Objects.hash(NumeroPedido, FechaPedido, estado, DireccionEntrega, metodoPago, lineasPedido, cliente);
     }
 
@@ -98,11 +105,14 @@ public class Pedido {
     // constructor
 
     public Pedido(int numeroPedido, LocalDate fechaPedido, EstadoPedido estado, String direccionEntrega, int metodoPago, ArrayList<LineaPedido> lineasPedido, Cliente cliente) {
+
         NumeroPedido = numeroPedido;
         FechaPedido = fechaPedido;
         this.estado = estado;
         DireccionEntrega = direccionEntrega;
+
         this.metodoPago = metodoPago;
+
         this.lineasPedido = lineasPedido;
         this.cliente = cliente;
     }
@@ -112,9 +122,11 @@ public class Pedido {
         return "Pedido{" +
                 "NumeroPedido=" + NumeroPedido +
                 ", FechaPedido=" + FechaPedido +
+
                 ", estado=" + estado +
                 ", DireccionEntrega='" + DireccionEntrega + '\'' +
                 ", metodoPago=" + metodoPago +
+
                 ", lineasPedido=" + lineasPedido +
                 ", cliente=" + cliente +
                 '}';
@@ -126,7 +138,9 @@ public class Pedido {
                 ", FechaPedido=" + FechaPedido +
                 ", estado='" + estado + '\'' +
                 ", DireccionEntrega='" + DireccionEntrega + '\'' +
+
                 ", metodoPago=" + metodoPago +
+
                 ", lineasPedido=" + lineasPedido +
                 ", cliente=" + cliente +
                 '}';

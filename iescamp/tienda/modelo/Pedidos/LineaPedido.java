@@ -6,6 +6,7 @@ import java.util.Objects;
 public class LineaPedido {
 
 
+
     private int idLinea;
     private Articulo articulo;
     private int cantidad;
@@ -51,7 +52,9 @@ public class LineaPedido {
                 "idLinea=" + idLinea +
                 ", articulo=" + articulo +
                 ", cantidad=" + cantidad +
+
                 ", pedido=" + pedido +
+
                 '}';
     }
 
@@ -59,12 +62,15 @@ public class LineaPedido {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         LineaPedido that = (LineaPedido) o;
         return idLinea == that.idLinea && cantidad == that.cantidad && Objects.equals(articulo, that.articulo) && Objects.equals(pedido, that.pedido);
+
     }
 
     @Override
     public int hashCode() {
+
         return Objects.hash(idLinea, articulo, cantidad, pedido);
     }
 
@@ -73,5 +79,6 @@ public class LineaPedido {
         this.articulo = articulo;
         this.cantidad = cantidad;
         this.pedido = pedido;
+
     }
 }

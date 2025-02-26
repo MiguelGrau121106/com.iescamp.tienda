@@ -1,8 +1,7 @@
 package iescamp.tienda.test;
 
-import com.iescamp.tienda.modelo.Cliente;
-import com.iescamp.tienda.modelo.Empleado;
-import com.iescamp.tienda.modelo.Usuario;
+import iescamp.tienda.modelo.Usuarios.Cliente;
+import iescamp.tienda.modelo.Usuarios.Empleado;
 
 import java.time.LocalDate;
 

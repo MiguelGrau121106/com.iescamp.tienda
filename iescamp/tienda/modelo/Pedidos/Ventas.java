@@ -24,6 +24,8 @@ public class Ventas {
         }
     }
 
+    //CRUD -> Create, Read, Update, Delete
+
     public void EliminarPedido(Pedido pedido){
         pedidos.remove(pedido);
     }
@@ -37,10 +39,18 @@ public class Ventas {
         return null;
     }
 
-    public void MostrarPedidos(){
+
+
+    public boolean MostrarPedidos(){
+        if (pedidos.isEmpty()){
+            return false;
+        }
         for (Pedido p: pedidos) {
             System.out.println(p);
+            return true;
         }
+        return false;
+
     }
 
     public void BuscarPedidoPorEstado(String estado){
