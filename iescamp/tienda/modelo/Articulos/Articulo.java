@@ -17,7 +17,18 @@ public class Articulo {
 
 
 
+
+    private String color;
+
+
     // getter y setter
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public Material getMaterial() {
         return material;
@@ -106,6 +117,9 @@ public class Articulo {
         this.material = material;
         this.cod_art = cod_art;
         this.activo = activo;
+
+        this.color = color;
+
 
         this.imagen = imagen;
         this.nombre = nombre;
