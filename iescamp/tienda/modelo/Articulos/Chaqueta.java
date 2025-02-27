@@ -14,8 +14,8 @@ public class Chaqueta extends Ropa{
     }
     //CONSTRUCTOR
 
-    public Chaqueta(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, int talla, String color1, String tipoCierre, Boolean impermeable) {
-        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, talla, color1, tipoCierre);
+    public Chaqueta(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, int talla, String tipoCierre, Boolean impermeable) {
+        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, talla, tipoCierre);
         this.impermeable = impermeable;
     }
 

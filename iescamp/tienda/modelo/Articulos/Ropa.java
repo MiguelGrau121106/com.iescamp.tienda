@@ -3,7 +3,7 @@ package iescamp.tienda.modelo.Articulos;
 import java.util.Objects;
 
 
-public class Ropa extends Articulo{
+
    
     
     //Getter y Setter
@@ -18,15 +18,6 @@ public class Ropa extends Articulo {
 
     public void setTalla(int talla) {
         this.talla = talla;
-    }
-
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
 
@@ -51,7 +42,7 @@ public class Ropa extends Articulo {
         if (o == null || getClass() != o.getClass()) return false;
         Ropa ropa = (Ropa) o;
         return talla == ropa.talla  && Objects.equals(tipoCierre, ropa.tipoCierre);
-        if (!super.equals(o)) return false;
+
 
      
     }
@@ -59,7 +50,15 @@ public class Ropa extends Articulo {
     @Override
     public int hashCode() {
 
-        return Objects.hash(talla, color, tipoCierre);
+        return Objects.hash(talla,  tipoCierre);
 
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +"Ropa{" +
+                "talla=" + talla +
+                ", tipoCierre='" + tipoCierre + '\'' +
+                '}';
     }
 }

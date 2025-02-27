@@ -23,17 +23,18 @@ public class Camisa extends Ropa{
     }
     //CONSTRUCTOR
 
-    public Camisa(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, int talla, String color1, String tipoCierre, String tipoManga, Boolean esEstampada) {
-        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, talla, color1, tipoCierre);
+    public Camisa(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, int talla, String tipoCierre, String tipoManga, Boolean esEstampada) {
+        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, talla, tipoCierre);
         this.tipoManga = tipoManga;
         this.esEstampada = esEstampada;
     }
+
 
     //MOSTRAR DETALLES
 
     @Override
     public String toString() {
-        return "Camisa{" +
+        return super.toString() + "Camisa{" +
                 "tipoManga='" + tipoManga + '\'' +
                 ", esEstampada=" + esEstampada +
                 '}';
