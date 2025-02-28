@@ -104,7 +104,7 @@ public class Pedido {
 
     // constructor
 
-    public Pedido(int numeroPedido, LocalDate fechaPedido, EstadoPedido estado, String direccionEntrega, int metodoPago, ArrayList<LineaPedido> lineasPedido, Cliente cliente) {
+    public Pedido(int numeroPedido, LocalDate fechaPedido, EstadoPedido estado, String direccionEntrega, int metodoPago,  Cliente cliente) {
 
         NumeroPedido = numeroPedido;
         FechaPedido = fechaPedido;
@@ -113,7 +113,6 @@ public class Pedido {
 
         this.metodoPago = metodoPago;
 
-        this.lineasPedido = lineasPedido;
         this.cliente = cliente;
     }
 

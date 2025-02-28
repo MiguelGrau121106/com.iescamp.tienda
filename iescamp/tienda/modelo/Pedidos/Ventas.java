@@ -20,6 +20,12 @@ public class Ventas {
         for (Pedido p: pedidos) {
             if (p.equals(pedido)){
                 p.setEstado(pedido.getEstado());
+                p.setCliente(pedido.getCliente());
+                p.setDireccionEntrega(pedido.getDireccionEntrega());
+                p.setFechaPedido(pedido.getFechaPedido());
+                p.setLineasPedido(pedido.getLineasPedido());
+                p.setMetodoPago(pedido.getMetodoPago());
+                p.setNumeroPedido(pedido.getNumeroPedido());
             }
         }
     }
@@ -53,7 +59,7 @@ public class Ventas {
 
     }
 
-    public void BuscarPedidoPorEstado(String estado){
+    public void BuscarPedidoPorEstado(EstadoPedido estado){
         for (Pedido p: pedidos) {
             if (p.getEstado().equals(estado)){
                 System.out.println(p);
@@ -61,7 +67,7 @@ public class Ventas {
         }
     }
 
-    public ArrayList<Pedido> BuscarPedidoPorCliente(Cliente cliente){
+    public ArrayList<Pedido> BuscarPedidoByCliente(Cliente cliente){
         ArrayList<Pedido> pedidosCliente = new ArrayList<>();
         for (Pedido p: pedidos) {
             if (p.getCliente().equals(cliente)){
@@ -70,6 +76,18 @@ public class Ventas {
         }
         return pedidosCliente;
     }
+
+    public String listarPedidos() {
+        String lista = "";
+        for (Pedido p: pedidos) {
+            lista += p.toString() + "\n";
+        }
+        return lista;
+    }
+
+
+
+
 
 
 }

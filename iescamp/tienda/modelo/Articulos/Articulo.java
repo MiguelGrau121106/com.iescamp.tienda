@@ -127,4 +127,19 @@ public class Articulo {
         this.marca = marca;
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "Articulo{" +
+                "material=" + material +
+                ", cod_art=" + cod_art +
+                ", activo=" + activo +
+                ", imagen='" + imagen + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", marca='" + marca + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }
