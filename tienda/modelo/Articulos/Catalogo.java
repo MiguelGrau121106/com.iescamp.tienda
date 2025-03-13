@@ -3,12 +3,14 @@ package iescamp.tienda.modelo.Articulos;
 import iescamp.tienda.modelo.Pedidos.Pedido;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 import java.util.ArrayList;
 
-public class Catalogo {
+public class Catalogo implements Serializable {
+    private static final long serialVersionUID = 1L;
     ArrayList<Articulo> articulos = new ArrayList<>();
 
     // Create
@@ -19,6 +21,14 @@ public class Catalogo {
     // Read
     public ArrayList<Articulo> getArticulos() {
         return articulos;
+    }
+
+    public String ListarArticulos() {
+        String lista = "";
+        for (Articulo articulo : articulos) {
+            lista += articulo.toString() + "\n";
+        }
+        return lista;
     }
 
     // Update

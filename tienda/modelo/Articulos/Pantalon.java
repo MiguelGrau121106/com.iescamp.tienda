@@ -1,12 +1,12 @@
 package iescamp.tienda.modelo.Articulos;
 
 public class Pantalon extends Ropa{
-    private Boolean tieneBolsillos;
+    private boolean tieneBolsillos;
     private String tipoPantalon;
 
     //GETTER Y SETTERS
 
-    public Boolean getTieneBolsillos() {
+    public boolean getTieneBolsillos() {
         return tieneBolsillos;
     }
 

@@ -2,9 +2,10 @@ package iescamp.tienda.modelo.Articulos;
 
 import java.util.Objects;
 
-public class Camisa extends Ropa{
+public class Camisa extends Ropa implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private String tipoManga;
-    private Boolean esEstampada;
+    private boolean esEstampada;
     //GETTER Y SETTER
     public String getTipoManga() {
         return tipoManga;
@@ -14,7 +15,7 @@ public class Camisa extends Ropa{
         this.tipoManga = tipoManga;
     }
 
-    public Boolean getEsEstampada() {
+    public boolean getEsEstampada() {
         return esEstampada;
     }
 

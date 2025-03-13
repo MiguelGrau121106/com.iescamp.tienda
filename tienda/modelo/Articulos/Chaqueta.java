@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Chaqueta extends Ropa{
     private Boolean impermeable;
     //GETTER Y SETTER
-    public Boolean getImpermeable() {
+    public boolean getImpermeable() {
         return impermeable;
     }
 

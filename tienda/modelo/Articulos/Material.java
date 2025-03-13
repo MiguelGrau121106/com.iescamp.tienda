@@ -1,8 +1,10 @@
 package iescamp.tienda.modelo.Articulos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Material {
+public class Material implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int codigo;
     private String denominacion;
     // Getter y setter

@@ -1,10 +1,11 @@
 package iescamp.tienda.modelo.Usuarios;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Cliente extends Usuario{
-
+public class Cliente extends Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String direccionEnvio;
     private float saldoCuenta;
     private boolean tieneTarjetaFidelidad;

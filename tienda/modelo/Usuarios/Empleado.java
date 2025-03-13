@@ -37,4 +37,6 @@ public class Empleado extends Usuario{
                 ", departamento=" + departamento +
                 '}';
     }
+
+
 }

@@ -22,7 +22,6 @@ public class Plantilla {
                 e.setActivo(empleado.isActivo());
                 e.setNombre(empleado.getNombre());
                 e.setApellidos(empleado.getApellidos());
-                e.setDNI(empleado.getDNI());
                 e.setDireccion(empleado.getDireccion());
                 e.setTelefono(empleado.getTelefono());
                 e.setPrivilegio(empleado.isPrivilegio());
