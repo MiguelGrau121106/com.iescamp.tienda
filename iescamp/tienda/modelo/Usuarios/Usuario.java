@@ -117,7 +117,7 @@ public abstract class Usuario {
     }
 
     @Override
-    public  String toString() {
+    public String toString() {
         return "Usuario{" +
                 "DNI='" + DNI + '\'' +
                 ", nombre='" + nombre + '\'' +
@@ -129,5 +129,6 @@ public abstract class Usuario {
                 ", pass='" + pass + '\'' +
                 ", activo=" + activo +
                 '}';
+
     }
 }

@@ -1,9 +1,8 @@
 package iescamp.tienda.modelo.Pedidos;
 
 
-import iescamp.tienda.modelo.Usuarios.Cliente;
 
-import javax.sound.sampled.Line;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -17,7 +16,7 @@ public class Pedido {
     private int metodoPago;
 
     private ArrayList<LineaPedido> lineasPedido = new ArrayList<>();
-    private Cliente cliente;
+    private String DNI;
 
     // getter y setter
 
@@ -72,12 +71,12 @@ public class Pedido {
         this.lineasPedido = lineasPedido;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getDNI() {
+        return DNI;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
     }
     //metodo adicional
     public void addLineaPedido(LineaPedido lineaPedido) {
@@ -91,20 +90,20 @@ public class Pedido {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pedido pedido = (Pedido) o;
-        return NumeroPedido == pedido.NumeroPedido && metodoPago == pedido.metodoPago && Objects.equals(FechaPedido, pedido.FechaPedido) && estado == pedido.estado && Objects.equals(DireccionEntrega, pedido.DireccionEntrega) && Objects.equals(lineasPedido, pedido.lineasPedido) && Objects.equals(cliente, pedido.cliente);
+        return NumeroPedido == pedido.NumeroPedido && metodoPago == pedido.metodoPago && Objects.equals(FechaPedido, pedido.FechaPedido) && estado == pedido.estado && Objects.equals(DireccionEntrega, pedido.DireccionEntrega) && Objects.equals(lineasPedido, pedido.lineasPedido) && Objects.equals(DNI, pedido.DNI);
 
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(NumeroPedido, FechaPedido, estado, DireccionEntrega, metodoPago, lineasPedido, cliente);
+        return Objects.hash(NumeroPedido, FechaPedido, estado, DireccionEntrega, metodoPago, lineasPedido, DNI);
     }
 
 
     // constructor
 
-    public Pedido(int numeroPedido, LocalDate fechaPedido, EstadoPedido estado, String direccionEntrega, int metodoPago, ArrayList<LineaPedido> lineasPedido, Cliente cliente) {
+    public Pedido(int numeroPedido, LocalDate fechaPedido, EstadoPedido estado, String direccionEntrega, int metodoPago, String DNI) {
 
         NumeroPedido = numeroPedido;
         FechaPedido = fechaPedido;
@@ -113,12 +112,11 @@ public class Pedido {
 
         this.metodoPago = metodoPago;
 
-        this.lineasPedido = lineasPedido;
-        this.cliente = cliente;
+        this.DNI = DNI;
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "Pedido{" +
                 "NumeroPedido=" + NumeroPedido +
                 ", FechaPedido=" + FechaPedido +
@@ -128,11 +126,11 @@ public class Pedido {
                 ", metodoPago=" + metodoPago +
 
                 ", lineasPedido=" + lineasPedido +
-                ", cliente=" + cliente +
+                ", cliente=" + DNI +
                 '}';
     }
 
-    public String MostrarPedido(){
+    public java.lang.String MostrarPedido(){
         return  "Pedido{" +
                 "NumeroPedido=" + NumeroPedido +
                 ", FechaPedido=" + FechaPedido +
@@ -142,7 +140,7 @@ public class Pedido {
                 ", metodoPago=" + metodoPago +
 
                 ", lineasPedido=" + lineasPedido +
-                ", cliente=" + cliente +
+                ", cliente=" + DNI +
                 '}';
     }
 
@@ -150,10 +148,10 @@ public class Pedido {
         double total = 0;
 
         for (LineaPedido Ln : lineasPedido){
-            int cantidad = Ln.getCantidad();
+
             double precio = Ln.getArticulo().getPrecio();
 
-            total = total + (cantidad * precio);
+            total += precio;
         }
 
         return total;

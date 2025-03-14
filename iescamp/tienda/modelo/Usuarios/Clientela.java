@@ -94,14 +94,7 @@ public class Clientela {
         return null;
     }
 
-    public Cliente buscarbyId(int id) {
-        for (Cliente c : clientes) {
-            if (c.getId() == id) {
-                return c;
-            }
-        }
-        return null;
-    }
+
 
     public ArrayList<Cliente> getClientesbytarjetaFidelidad(boolean tarjetaFidelidad) {
         ArrayList<Cliente> clientesByTarjetaFidelidad = new ArrayList<>();
@@ -132,5 +125,5 @@ public class Clientela {
             }
         }
         return clientesByMetodoPago;
-    }
+}
 }

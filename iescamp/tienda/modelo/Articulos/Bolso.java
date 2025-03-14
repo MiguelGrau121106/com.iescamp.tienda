@@ -25,7 +25,7 @@ public class Bolso extends Accesorio {
     //Constructor
 
     public Bolso(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, String estilo, Boolean esPersonalizado, String tipoCierre, String capacidad) {
-        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, estilo, esPersonalizado);
+        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, estilo, esPersonalizado, TipoAccesorio.BOLSO);
         this.tipoCierre = tipoCierre;
         this.capacidad = capacidad;
     }

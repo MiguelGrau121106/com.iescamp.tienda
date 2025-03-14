@@ -7,20 +7,14 @@ public class LineaPedido {
 
 
 
-    private int idLinea;
+
     private Articulo articulo;
-    private int cantidad;
-    private Pedido pedido;
 
 
 
-    public int getIdLinea() {
-        return idLinea;
-    }
 
-    public void setIdLinea(int idLinea) {
-        this.idLinea = idLinea;
-    }
+
+
 
     public Articulo getArticulo() {
         return articulo;
@@ -30,30 +24,17 @@ public class LineaPedido {
         this.articulo = articulo;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
 
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
 
     @Override
     public String toString() {
         return "LineaPedido{" +
-                "idLinea=" + idLinea +
-                ", articulo=" + articulo +
-                ", cantidad=" + cantidad +
 
-                ", pedido=" + pedido +
+                ", articulo=" + articulo +
+
+
+
 
                 '}';
     }
@@ -64,21 +45,21 @@ public class LineaPedido {
         if (o == null || getClass() != o.getClass()) return false;
 
         LineaPedido that = (LineaPedido) o;
-        return idLinea == that.idLinea && cantidad == that.cantidad && Objects.equals(articulo, that.articulo) && Objects.equals(pedido, that.pedido);
+        return Objects.equals(articulo, that.articulo);
 
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idLinea, articulo, cantidad, pedido);
+        return Objects.hash(articulo);
     }
 
-    public LineaPedido(int idLinea, Articulo articulo, int cantidad, Pedido pedido) {
-        this.idLinea = idLinea;
+    public LineaPedido(Articulo articulo) {
+
         this.articulo = articulo;
-        this.cantidad = cantidad;
-        this.pedido = pedido;
+
+
 
     }
 }

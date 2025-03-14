@@ -1,8 +1,10 @@
 package iescamp.tienda.modelo.Usuarios;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Departamento {
+public class Departamento implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int codigo;
     private String nombre;
 

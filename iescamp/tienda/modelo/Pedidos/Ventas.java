@@ -1,6 +1,6 @@
 package iescamp.tienda.modelo.Pedidos;
 
-import iescamp.tienda.modelo.Usuarios.Cliente;
+
 
 import java.util.ArrayList;
 
@@ -20,6 +20,12 @@ public class Ventas {
         for (Pedido p: pedidos) {
             if (p.equals(pedido)){
                 p.setEstado(pedido.getEstado());
+                p.setDNI(pedido.getDNI());
+                p.setDireccionEntrega(pedido.getDireccionEntrega());
+                p.setFechaPedido(pedido.getFechaPedido());
+                p.setLineasPedido(pedido.getLineasPedido());
+                p.setMetodoPago(pedido.getMetodoPago());
+                p.setNumeroPedido(pedido.getNumeroPedido());
             }
         }
     }
@@ -53,7 +59,7 @@ public class Ventas {
 
     }
 
-    public void BuscarPedidoPorEstado(String estado){
+    public void BuscarPedidoPorEstado(EstadoPedido estado){
         for (Pedido p: pedidos) {
             if (p.getEstado().equals(estado)){
                 System.out.println(p);
@@ -61,15 +67,27 @@ public class Ventas {
         }
     }
 
-    public ArrayList<Pedido> BuscarPedidoPorCliente(Cliente cliente){
+    public ArrayList<Pedido> BuscarPedidoByCliente(String string){
         ArrayList<Pedido> pedidosCliente = new ArrayList<>();
         for (Pedido p: pedidos) {
-            if (p.getCliente().equals(cliente)){
+            if (p.getDNI().equals(string)){
                 pedidosCliente.add(p);
             }
         }
         return pedidosCliente;
     }
+
+    public java.lang.String listarPedidos() {
+        java.lang.String lista = "";
+        for (Pedido p: pedidos) {
+            lista += p.toString() + "\n";
+        }
+        return lista;
+    }
+
+
+
+
 
 
 }

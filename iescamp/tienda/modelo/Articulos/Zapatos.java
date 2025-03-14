@@ -25,10 +25,12 @@ public class Zapatos extends Accesorio {
     //CONSTRUCTOR
 
     public Zapatos(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, String estilo, Boolean esPersonalizado, int tallaZapatos, String tipoSuela) {
-        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, estilo, esPersonalizado);
+        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, estilo, esPersonalizado, TipoAccesorio.ZAPATOS);
         this.tallaZapatos = tallaZapatos;
         this.tipoSuela = tipoSuela;
     }
+
+
     //TOSTRING
 
     @Override

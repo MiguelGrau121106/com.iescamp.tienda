@@ -3,8 +3,9 @@ package iescamp.tienda.modelo.Articulos;
 import iescamp.tienda.modelo.Articulos.*;
 
 import java.util.Objects;
+import java.io.Serializable;
+public class Articulo  {
 
-public class Articulo {
     private Material material;
     private int cod_art;
     private boolean activo;
@@ -14,10 +15,6 @@ public class Articulo {
     private double precio;
     private String marca;
     private String descripcion;
-
-
-
-
     private String color;
 
 
@@ -111,6 +108,7 @@ public class Articulo {
         return Objects.hash(material, cod_art, activo, imagen, nombre, precio, marca, descripcion);
     }
 
+
     // constructor
 
     public Articulo(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion) {
@@ -126,5 +124,20 @@ public class Articulo {
         this.precio = precio;
         this.marca = marca;
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Articulo{" +
+                "material=" + material +
+                ", cod_art=" + cod_art +
+                ", activo=" + activo +
+                ", imagen='" + imagen + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", marca='" + marca + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", color='" + color + '\'' +
+                '}';
     }
 }

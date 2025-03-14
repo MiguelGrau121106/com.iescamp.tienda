@@ -1,12 +1,12 @@
 package iescamp.tienda.modelo.Articulos;
 
 public class Pantalon extends Ropa{
-    private Boolean tieneBolsillos;
+    private boolean tieneBolsillos;
     private String tipoPantalon;
 
     //GETTER Y SETTERS
 
-    public Boolean getTieneBolsillos() {
+    public boolean getTieneBolsillos() {
         return tieneBolsillos;
     }
 
@@ -23,8 +23,8 @@ public class Pantalon extends Ropa{
     }
     //CONSTRUCTOR
 
-    public Pantalon(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, int talla, String color1, String tipoCierre, Boolean tieneBolsillos, String tipoPantalon) {
-        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, talla, color1, tipoCierre);
+    public Pantalon(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, String talla, String tipoCierre, Boolean tieneBolsillos, String tipoPantalon) {
+        super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, talla, tipoCierre, TipoRopa.PANTALON);
         this.tieneBolsillos = tieneBolsillos;
         this.tipoPantalon = tipoPantalon;
     }
