@@ -3,7 +3,8 @@ package iescamp.tienda.modelo.Usuarios;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class Clientela {
+public class Clientela implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private ArrayList<Cliente> clientes = new ArrayList<>();
 
     // Create

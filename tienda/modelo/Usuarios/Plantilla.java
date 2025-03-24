@@ -2,7 +2,8 @@ package iescamp.tienda.modelo.Usuarios;
 
 import java.util.ArrayList;
 
-public class Plantilla {
+public class Plantilla implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private ArrayList<Empleado> empleados = new ArrayList<>();
 
     // Crear
@@ -46,8 +47,9 @@ public class Plantilla {
     }
 
     public String listarEmpleados(){
+
         String lista = "";
-        for (Empleado e: empleados) {
+        for (Empleado e : empleados) {
             lista += e.toString() + "\n";
         }
         return lista;

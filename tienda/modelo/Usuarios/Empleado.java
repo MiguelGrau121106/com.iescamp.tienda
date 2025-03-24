@@ -1,9 +1,12 @@
 package iescamp.tienda.modelo.Usuarios;
 
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.*;
 
-
-public class Empleado extends Usuario{
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+public class Empleado extends Usuario implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private boolean tienePrivilegios;
     private Departamento departamento;
 
@@ -24,7 +27,18 @@ public class Empleado extends Usuario{
         this.tienePrivilegios = privilegio;
     }
 
-    public Empleado(String DNI, String nombre, String apellidos, String direccion, String correoElectronico, String telefono, LocalDate fechaNacimiento, String pass, boolean activo, boolean tienePrivilegios, Departamento departamento) {
+    @JsonCreator
+    public Empleado(@JsonProperty("DNI") String DNI,
+                    @JsonProperty("nombre") String nombre,
+                    @JsonProperty("apellidos") String apellidos,
+                    @JsonProperty("direccion") String direccion,
+                    @JsonProperty("correoElectronico") String correoElectronico,
+                    @JsonProperty("telefono") String telefono,
+                    @JsonProperty("fechaNacimiento") LocalDate fechaNacimiento,
+                    @JsonProperty("pass") String pass,
+                    @JsonProperty("activo") boolean activo,
+                    @JsonProperty("tienePrivilegios") boolean tienePrivilegios,
+                    @JsonProperty("departamento") Departamento departamento) {
         super(DNI, nombre, apellidos, direccion, correoElectronico, telefono, fechaNacimiento, pass, activo);
         this.tienePrivilegios = tienePrivilegios;
         this.departamento = departamento;

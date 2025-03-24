@@ -7,7 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Pedido {
+public class Pedido implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private int NumeroPedido;
     private LocalDate FechaPedido;
 

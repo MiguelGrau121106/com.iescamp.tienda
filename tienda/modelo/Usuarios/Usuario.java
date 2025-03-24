@@ -1,9 +1,25 @@
 package iescamp.tienda.modelo.Usuarios;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.*;
+import iescamp.tienda.modelo.Articulos.Accesorio;
+import iescamp.tienda.modelo.Articulos.Ropa;
 
-public abstract class Usuario {
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
+
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Empleado.class, name = "empleado"),
+        @JsonSubTypes.Type(value = Cliente.class, name = "cliente")
+})
+
+public abstract class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String DNI;
     private String nombre;
     private String apellidos;
@@ -86,7 +102,18 @@ public abstract class Usuario {
         this.activo = activo;
     }
 
-    public Usuario(String DNI, String nombre, String apellidos, String direccion, String correoElectronico, String telefono, LocalDate fechaNacimiento, String pass, boolean activo) {
+    @JsonCreator
+    public Usuario(
+        @JsonProperty("DNI") String DNI,
+        @JsonProperty("nombre") String nombre,
+        @JsonProperty("apellidos") String apellidos,
+        @JsonProperty("direccion") String direccion,
+        @JsonProperty("correoElectronico") String correoElectronico,
+        @JsonProperty("telefono") String telefono,
+        @JsonProperty("fechaNacimiento") LocalDate fechaNacimiento,
+        @JsonProperty("pass") String pass,
+        @JsonProperty("activo") boolean activo
+    ) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;

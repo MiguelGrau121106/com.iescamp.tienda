@@ -1,14 +1,20 @@
 package iescamp.tienda.modelo.Articulos;
 
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.*;
 
 
 
-   
+   @JsonSubTypes({
+           @JsonSubTypes.Type(value = Camisa.class, name = "camisa"),
+           @JsonSubTypes.Type(value = Pantalon.class, name = "pantalon"),
+           @JsonSubTypes.Type(value = Chaqueta.class, name = "chaqueta")
+   })
     
     //Getter y Setter
 
-public class Ropa extends Articulo {
+public class Ropa extends Articulo implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private String talla;
     private String tipoCierre;
     private TipoRopa tipoRopa;
@@ -38,7 +44,21 @@ public class Ropa extends Articulo {
         this.tipoCierre = tipoCierre;
     }
 
-    public Ropa(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, String talla, String tipoCierre, TipoRopa tipoRopa) {
+    @JsonCreator
+    public Ropa(
+            @JsonProperty("material") Material material,
+            @JsonProperty("cod_art") int cod_art,
+            @JsonProperty("activo") boolean activo,
+            @JsonProperty("color") String color,
+            @JsonProperty("imagen") String imagen,
+            @JsonProperty("nombre") String nombre,
+            @JsonProperty("precio") double precio,
+            @JsonProperty("marca") String marca,
+            @JsonProperty("descripcion") String descripcion,
+            @JsonProperty("talla") String talla,
+            @JsonProperty("tipoCierre") String tipoCierre,
+            @JsonProperty("tipoRopa") TipoRopa tipoRopa
+    ) {
         super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion);
         this.talla = talla;
         this.tipoCierre = tipoCierre;

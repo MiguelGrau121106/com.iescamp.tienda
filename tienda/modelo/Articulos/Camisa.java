@@ -2,6 +2,8 @@ package iescamp.tienda.modelo.Articulos;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.*;
+
 public class Camisa extends Ropa implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private String tipoManga;
@@ -24,7 +26,22 @@ public class Camisa extends Ropa implements java.io.Serializable {
     }
     //CONSTRUCTOR
 
-    public Camisa(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, String talla, String tipoCierre, String tipoManga, Boolean esEstampada) {
+    @JsonCreator
+    public Camisa(
+        @JsonProperty("material") Material material,
+        @JsonProperty("cod_art") int cod_art,
+        @JsonProperty("activo") boolean activo,
+        @JsonProperty("color") String color,
+        @JsonProperty("imagen") String imagen,
+        @JsonProperty("nombre") String nombre,
+        @JsonProperty("precio") double precio,
+        @JsonProperty("marca") String marca,
+        @JsonProperty("descripcion") String descripcion,
+        @JsonProperty("talla") String talla,
+        @JsonProperty("tipoCierre") String tipoCierre,
+        @JsonProperty("tipoManga") String tipoManga,
+        @JsonProperty("esEstampada") Boolean esEstampada
+    ) {
         super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, talla, tipoCierre, TipoRopa.CAMISA);
         this.tipoManga = tipoManga;
         this.esEstampada = esEstampada;

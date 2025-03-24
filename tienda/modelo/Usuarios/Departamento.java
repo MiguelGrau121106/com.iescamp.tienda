@@ -1,5 +1,8 @@
 package iescamp.tienda.modelo.Usuarios;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -42,8 +45,8 @@ public class Departamento implements Serializable {
     }
 
     // Constructor
-
-    public Departamento(int codigo, String nombre) {
+    @JsonCreator
+    public Departamento(@JsonProperty("codigo") int codigo, @JsonProperty("nombre") String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
     }

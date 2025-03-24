@@ -1,12 +1,7 @@
 package iescamp.tienda.modelo.Articulos;
 
-import iescamp.tienda.modelo.Pedidos.Pedido;
-
 
 import java.io.Serializable;
-import java.util.ArrayList;
-
-
 import java.util.ArrayList;
 
 public class Catalogo implements Serializable {

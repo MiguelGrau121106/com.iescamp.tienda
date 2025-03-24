@@ -1,8 +1,9 @@
 package iescamp.tienda.modelo.Articulos;
 
 import java.util.Objects;
-
-public class Accesorio extends Articulo {
+import com.fasterxml.jackson.annotation.*;
+public class Accesorio extends Articulo implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private String estilo;
     private boolean esPersonalizado;
     private TipoAccesorio tipoAccesorio;
@@ -36,7 +37,21 @@ public class Accesorio extends Articulo {
     //CONSTRUCTOR
 
 
-    public Accesorio(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, String estilo, boolean esPersonalizado, TipoAccesorio tipoAccesorio) {
+    @JsonCreator
+    public Accesorio(
+            @JsonProperty("material") Material material,
+            @JsonProperty("cod_art") int cod_art,
+            @JsonProperty("activo") boolean activo,
+            @JsonProperty("color") String color,
+            @JsonProperty("imagen") String imagen,
+            @JsonProperty("nombre") String nombre,
+            @JsonProperty("precio") double precio,
+            @JsonProperty("marca") String marca,
+            @JsonProperty("descripcion") String descripcion,
+            @JsonProperty("estilo") String estilo,
+            @JsonProperty("esPersonalizado") boolean esPersonalizado,
+            @JsonProperty("tipoAccesorio") TipoAccesorio tipoAccesorio
+    ) {
         super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion);
         this.estilo = estilo;
         this.esPersonalizado = esPersonalizado;

@@ -3,7 +3,6 @@ package iescamp.tienda.test;
 import iescamp.tienda.modelo.Pedidos.LineaPedido;
 import iescamp.tienda.modelo.Usuarios.*;
 import iescamp.tienda.modelo.Articulos.*;
-import iescamp.tienda.test.ConsoleReader;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

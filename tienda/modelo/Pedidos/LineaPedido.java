@@ -3,7 +3,8 @@ import iescamp.tienda.modelo.Articulos.Articulo;
 
 import java.util.Objects;
 
-public class LineaPedido {
+public class LineaPedido implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
 
 
 

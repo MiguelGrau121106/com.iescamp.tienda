@@ -1,8 +1,12 @@
 package iescamp.tienda.modelo.Usuarios;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
-public class MetodoPago {
+public class MetodoPago implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private int codigo;
     private String descripcion;
 
@@ -40,8 +44,8 @@ public class MetodoPago {
     }
 
     // Constructor
-
-    public MetodoPago(int codigo, String descripcion) {
+    @JsonCreator
+    public MetodoPago(@JsonProperty("codigo") int codigo, @JsonProperty("descripcion") String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
     }

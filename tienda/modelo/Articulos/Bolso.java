@@ -1,8 +1,10 @@
 package iescamp.tienda.modelo.Articulos;
 
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.*;
 
-public class Bolso extends Accesorio {
+public class Bolso extends Accesorio implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private String tipoCierre;
     private String capacidad;
     //GETTER Y SETTER
@@ -24,7 +26,23 @@ public class Bolso extends Accesorio {
     }
     //Constructor
 
-    public Bolso(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, String estilo, Boolean esPersonalizado, String tipoCierre, String capacidad) {
+
+    @JsonCreator
+    public Bolso(
+        @JsonProperty("material") Material material,
+        @JsonProperty("cod_art") int cod_art,
+        @JsonProperty("activo") boolean activo,
+        @JsonProperty("color") String color,
+        @JsonProperty("imagen") String imagen,
+        @JsonProperty("nombre") String nombre,
+        @JsonProperty("precio") double precio,
+        @JsonProperty("marca") String marca,
+        @JsonProperty("descripcion") String descripcion,
+        @JsonProperty("estilo") String estilo,
+        @JsonProperty("esPersonalizado") Boolean esPersonalizado,
+        @JsonProperty("tipoCierre") String tipoCierre,
+        @JsonProperty("capacidad") String capacidad
+    ) {
         super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, estilo, esPersonalizado, TipoAccesorio.BOLSO);
         this.tipoCierre = tipoCierre;
         this.capacidad = capacidad;
