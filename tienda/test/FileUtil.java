@@ -29,9 +29,7 @@ public class FileUtil {
 
 
     public static void serializarCatalogo(Catalogo catalogo) {
-
-        try (ObjectOutputStream oos = new ObjectOutputStream(new
-                FileOutputStream("catalogo.dat"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("catalogo.dat"))) {
             oos.writeObject(catalogo);
             System.out.println("Objeto serializado");
         } catch (FileNotFoundException e) {
@@ -256,10 +254,10 @@ public class FileUtil {
 
 
     // Empleados
-    public static void guardarEmpleadosEnCsv(List<Empleado> empleados, String filePath) throws IOException {
+    public static void guardarEmpleadosEnCsv(Plantilla plantilla, String filePath) throws IOException {
         try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
             writer.writeNext(new String[]{"DNI", "Nombre", "Apellidos", "Dirección", "Correo Electrónico", "Teléfono", "Fecha Nacimiento", "Contraseña", "Activo", "Privilegios", "Departamento"});
-            for (Empleado e : empleados) {
+            for (Empleado e : plantilla.getEmpleados()) {
                 writer.writeNext(new String[]{
                         e.getDNI(), e.getNombre(), e.getApellidos(), e.getDireccion(), e.getCorreoElectronico(),
                         e.getTelefono(), e.getFechaNacimiento().toString(), e.getPass(),
@@ -270,10 +268,12 @@ public class FileUtil {
         }
     }
 
-    public static List<Empleado> leerEmpleadosDesdeCsv(String filePath) throws IOException, CsvException {
-        List<Empleado> empleados = new ArrayList<>();
+    public static Plantilla leerEmpleadosDesdeCsv(String filePath) {
+        Plantilla plantilla = new Plantilla();
+
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
             List<String[]> datos = reader.readAll();
+
             datos.remove(0); // Eliminar encabezado
             for (String[] fila : datos) {
                 Empleado empleado = new Empleado(
@@ -281,17 +281,20 @@ public class FileUtil {
                         LocalDate.parse(fila[6]), fila[7], Boolean.parseBoolean(fila[8]),
                         Boolean.parseBoolean(fila[9]), new Departamento(0, fila[10])
                 );
-                empleados.add(empleado);
+                plantilla.addEmpleado(empleado);
             }
+        } catch (IOException | CsvException e) {
+            e.printStackTrace();
         }
-        return empleados;
+
+        return plantilla;
     }
 
     // Clientes
-    public static void guardarClientesEnCsv(List<Cliente> clientes, String filePath) throws IOException {
+    public static void guardarClientesEnCsv(Clientela clientela, String filePath) throws IOException {
         try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
             writer.writeNext(new String[]{"DNI", "Nombre", "Apellidos", "Dirección", "Correo Electrónico", "Teléfono", "Fecha Nacimiento", "Contraseña", "Activo", "Dirección Envío", "Saldo Cuenta", "Tarjeta Fidelidad", "Pedidos Realizados", "Código Método Pago", "Descripción Método Pago"});
-            for (Cliente c : clientes) {
+            for (Cliente c : clientela.getClientes()) {
                 writer.writeNext(new String[]{
                         c.getDNI(), c.getNombre(), c.getApellidos(), c.getDireccion(), c.getCorreoElectronico(),
                         c.getTelefono(), c.getFechaNacimiento().toString(), c.getPass(),
@@ -303,8 +306,9 @@ public class FileUtil {
         }
     }
 
-    public static List<Cliente> leerClientesDesdeCsv(String filePath) throws IOException, CsvException {
-        List<Cliente> clientes = new ArrayList<>();
+    public static Clientela leerClientesDesdeCsv(String filePath) throws IOException, CsvException {
+        Clientela clientela = new Clientela();
+
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
             List<String[]> datos = reader.readAll();
             datos.remove(0); // Eliminar encabezado
@@ -315,39 +319,106 @@ public class FileUtil {
                         fila[9], Float.parseFloat(fila[10]), Boolean.parseBoolean(fila[11]),
                         Integer.parseInt(fila[12]), new MetodoPago(Integer.parseInt(fila[13]), fila[14])
                 );
-                clientes.add(cliente);
+                clientela.addCliente(cliente);
             }
         }
-        return clientes;
+
+        return clientela;
     }
 
     // Articulos
-    public static void guardarArticulosEnCsv(List<Articulo> articulos, String filePath) throws IOException {
+    public static void guardarArticulosEnCsv(Catalogo catalogo, String filePath) throws IOException {
         try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
-            writer.writeNext(new String[]{"Código", "Nombre", "Descripción", "Marca", "Precio", "Color", "Imagen", "Activo", "Código Material", "Denominación Material"});
-            for (Articulo a : articulos) {
-                writer.writeNext(new String[]{
-                        String.valueOf(a.getCod_art()), a.getNombre(), a.getDescripcion(),
+            writer.writeNext(new String[]{"Tipo", "Código", "Nombre", "Descripción", "Marca", "Precio", "Color", "Imagen", "Activo", "Código Material", "Denominación Material", "Atributos Específicos"});
+            for (Articulo a : catalogo.getArticulos()) {
+                String tipo = a.getClass().getSimpleName();
+                String[] commonFields = new String[]{
+                        tipo, String.valueOf(a.getCod_art()), a.getNombre(), a.getDescripcion(),
                         a.getMarca(), String.valueOf(a.getPrecio()), a.getColor(),
                         a.getImagen(), String.valueOf(a.isActivo()),
                         String.valueOf(a.getMaterial().getCodigo()), a.getMaterial().getDenominacion()
-                });
+                };
+                String[] specificFields;
+                switch (tipo) {
+                    case "Camisa":
+                        Camisa camisa = (Camisa) a;
+                        specificFields = new String[]{camisa.getTipoManga(), String.valueOf(camisa.getEsEstampada())};
+                        break;
+                    case "Zapatos":
+                        Zapatos zapatos = (Zapatos) a;
+                        specificFields = new String[]{String.valueOf(zapatos.getTallaZapatos()), zapatos.getTipoSuela()};
+                        break;
+                    case "Chaqueta":
+                        Chaqueta chaqueta = (Chaqueta) a;
+                        specificFields = new String[]{chaqueta.getTalla(), chaqueta.getTipoCierre(), String.valueOf(chaqueta.getImpermeable())};
+                        break;
+                    case "Pantalon":
+                        Pantalon pantalon = (Pantalon) a;
+                        specificFields = new String[]{pantalon.getTalla(), pantalon.getTipoCierre(), String.valueOf(pantalon.getTieneBolsillos()), pantalon.getTipoPantalon()};
+                        break;
+                    case "Bolso":
+                        Bolso bolso = (Bolso) a;
+                        specificFields = new String[]{bolso.getEstilo(), String.valueOf(bolso.getEsPersonalizado()), bolso.getTipoCierre(), bolso.getCapacidad()};
+                        break;
+                    default:
+                        specificFields = new String[]{};
+                        break;
+                }
+                writer.writeNext(concatenateArrays(commonFields, specificFields));
             }
         }
     }
 
-    public static List<Articulo> leerArticulosDesdeCsv(String filePath) throws IOException, CsvException {
-        List<Articulo> articulos = new ArrayList<>();
+    private static String[] concatenateArrays(String[] first, String[] second) {
+        String[] result = new String[first.length + second.length];
+        System.arraycopy(first, 0, result, 0, first.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
+        return result;
+    }
+
+    public static Catalogo leerArticulosDesdeCsv(String filePath) throws IOException, CsvException {
+        Catalogo catalogo = new Catalogo();
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
             List<String[]> datos = reader.readAll();
             datos.remove(0); // Eliminar encabezado
             for (String[] fila : datos) {
+                String tipo = fila[0];
+                Material material = new Material(Integer.parseInt(fila[9]), fila[10]);
+                int cod_art = Integer.parseInt(fila[1]);
+                boolean activo = Boolean.parseBoolean(fila[8]);
+                String color = fila[6];
+                String imagen = fila[7];
+                String nombre = fila[2];
+                double precio = Double.parseDouble(fila[5]);
+                String marca = fila[4];
+                String descripcion = fila[3];
 
-                Articulo articulo = new Articulo(new Material(Integer.parseInt(fila[8]), fila[9]), Integer.parseInt(fila[0]), Boolean.parseBoolean(fila[7]), fila[5], fila[6], fila[1], Double.parseDouble(fila[4]), fila[3], fila[2]);
-                articulos.add(articulo);
+                Articulo articulo = null;
+                switch (tipo) {
+                    case "Camisa":
+                        articulo = new Camisa(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, fila[11], fila[12], fila[13],Boolean.parseBoolean(fila[14]));
+                        break;
+                    case "Zapatos":
+                        articulo = new Zapatos(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, fila[11], Boolean.parseBoolean(fila[12]), Integer.parseInt(fila[13]), fila[14]  );
+                        break;
+                    case "Chaqueta":
+                        articulo = new Chaqueta(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, fila[11], fila[12], Boolean.parseBoolean(fila[13]));
+                        break;
+                    case "Pantalon":
+                        articulo = new Pantalon(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, fila[11], fila[12], Boolean.parseBoolean(fila[13]), fila[14]);
+                        break;
+                    case "Bolso":
+                        articulo = new Bolso(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, fila[11], Boolean.parseBoolean(fila[12]), fila[13], fila[14]);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Tipo de artículo desconocido: " + tipo);
+                }
+                catalogo.addArticulo(articulo);
             }
         }
-        return articulos;
+
+        return catalogo;
+
     }
 
 

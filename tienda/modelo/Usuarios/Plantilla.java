@@ -30,6 +30,9 @@ public class Plantilla implements java.io.Serializable {
             }
         }
     }
+    public void setEmpleados(ArrayList<Empleado> empleados) {
+        empleados =  empleados;
+    }
 
     // Eliminar
     public void eliminarEmpleado(Empleado empleado) {

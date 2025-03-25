@@ -1,12 +1,14 @@
 package iescamp.tienda.test;
 
 
+import com.opencsv.exceptions.CsvException;
 import iescamp.tienda.modelo.Articulos.Catalogo;
 import iescamp.tienda.modelo.Articulos.Material;
 import iescamp.tienda.modelo.Pedidos.Ventas;
 
 import iescamp.tienda.modelo.Usuarios.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TiendaConsola {
@@ -167,7 +169,13 @@ public class TiendaConsola {
                 break;
 
             case 3:
-                menuClientelaArchivos();
+                try {
+                    menuClientelaArchivos();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (CsvException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
 
             case 5:
@@ -255,7 +263,13 @@ public class TiendaConsola {
                 }
 
             case 3:
-                menuCatalogoArchivos();
+                try {
+                    menuCatalogoArchivos();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (CsvException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case 7:
 
@@ -395,13 +409,15 @@ public class TiendaConsola {
     }
 
 
-    private static void menuCatalogoArchivos() {
+    private static void menuCatalogoArchivos() throws IOException, CsvException {
         System.out.println("Opciones con archivos...");
         System.out.println("1. Serializar Catalogo");
         System.out.println("2. DesSerializar Catalogo");
         System.out.println("3. Serializar en Json");
         System.out.println("4. DesSerializar en Json");
-        System.out.println("5. Salir");
+        System.out.println("5. Guardar en CSV");
+        System.out.println("6. Leer desde CSV");
+        System.out.println("7. Salir");
 
         int opcion = ConsoleReader.readInt("Introduce una opcion...");
 
@@ -426,18 +442,29 @@ public class TiendaConsola {
                 menuCatalogoArchivos();
                 break;
             case 5:
+                FileUtil.guardarArticulosEnCsv(catalogo,"catalogo.csv");
+                menuCatalogoArchivos();
+                break;
+
+            case 6:
+                catalogo = FileUtil.leerArticulosDesdeCsv("catalogo.csv");
+                menuCatalogoArchivos();
+                break;
+            case 7:
                 menuCatalogo();
         }
 
     }
 
-    private static void menuClientelaArchivos() {
+    private static void menuClientelaArchivos() throws IOException, CsvException {
         System.out.println("Opciones con archivos...");
         System.out.println("1. Serializar Clientela");
         System.out.println("2. DesSerializar Clientela");
         System.out.println("3. Serializar en Json");
         System.out.println("4. DesSerializar en Json");
-        System.out.println("5. Salir");
+        System.out.println("5. Guardar en CSV");
+        System.out.println("6. Leer desde CSV");
+        System.out.println("7. Salir");
 
         int opcion = ConsoleReader.readInt("Introduce una opcion...");
 
@@ -459,6 +486,16 @@ public class TiendaConsola {
                 menuClientelaArchivos();
                 break;
             case 5:
+                FileUtil.guardarClientesEnCsv(clientela, "clientela.csv");
+                menuClientelaArchivos();
+                break;
+
+            case 6:
+                clientela = FileUtil.leerClientesDesdeCsv("clientela.csv");
+                menuClientelaArchivos();
+                break;
+
+            case 7:
                 menuClientela();
         }
 
@@ -471,7 +508,9 @@ public class TiendaConsola {
         System.out.println("2. DesSerializar Plantilla");
         System.out.println("3. Serializar en Json");
         System.out.println("4. DesSerializar en Json");
-        System.out.println("5. Salir");
+        System.out.println("5. Guardar en CSV");
+        System.out.println("6. Leer desde CSV");
+        System.out.println("7. Salir");
 
         int opcion = ConsoleReader.readInt("Introduce una opcion...");
 
@@ -493,6 +532,20 @@ public class TiendaConsola {
                 menuPlantillaArchivos();
                 break;
             case 5:
+                try {
+                    FileUtil.guardarEmpleadosEnCsv(plantilla, "plantilla.csv");
+                    menuPlantillaArchivos();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+
+            case 6:
+                plantilla = FileUtil.leerEmpleadosDesdeCsv("plantilla.csv");
+                menuPlantillaArchivos();
+                break;
+
+            case 7:
                 menuPlantilla();
         }
 
