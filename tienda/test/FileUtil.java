@@ -78,8 +78,7 @@ public class FileUtil {
 
 
     public static Catalogo desSerializarCatalogo() {
-        try (ObjectInputStream ois = new ObjectInputStream(new
-                FileInputStream("catalogo.dat"))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("catalogo.dat"))) {
             Catalogo catalogo = (Catalogo) ois.readObject();
             System.out.println("Catalogo deserializado ");
             return catalogo;
