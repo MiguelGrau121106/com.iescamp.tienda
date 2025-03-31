@@ -2,14 +2,15 @@ package iescamp.tienda.test;
 
 
 import com.opencsv.exceptions.CsvException;
-import iescamp.tienda.modelo.Articulos.Catalogo;
-import iescamp.tienda.modelo.Articulos.Material;
+import iescamp.tienda.dao.AccesorioDAO;
+import iescamp.tienda.dao.*;
+import iescamp.tienda.modelo.Articulos.*;
 import iescamp.tienda.modelo.Pedidos.Ventas;
-
 import iescamp.tienda.modelo.Usuarios.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TiendaConsola {
     static Ventas ventas = new Ventas();
@@ -21,7 +22,23 @@ public class TiendaConsola {
     static ArrayList<MetodoPago> metodosPago = new ArrayList<>();
 
 
+    private static final ArticuloDAO articuloDAO = new ArticuloDAO();
+    private static final RopaDAO ropaDAO = new RopaDAO();
+    private static final AccesorioDAO accesorioDAO = new AccesorioDAO();
+
+
     public static void main(String[] args) {
+
+        AccesorioDAO Adao = new AccesorioDAO();
+
+        Bolso bolso;
+
+
+        bolso = (Bolso) Adao.obtenerPorId(19);
+
+        System.out.println(bolso);
+
+
 
 
         mostrarMenu();
@@ -36,7 +53,9 @@ public class TiendaConsola {
         System.out.println("2. Clientela");
         System.out.println("3. Catalogo");
         System.out.println("4. Ventas");
-        System.out.println("5. Salir");
+        System.out.println("5. Opciones con la base de datos");
+        System.out.println("6. Salir");
+
 
         System.out.println("Introduce una opcion: ");
         int opcion = ConsoleReader.readInt();
@@ -55,6 +74,9 @@ public class TiendaConsola {
                 menuVentas();
                 break;
             case 5:
+                menuBaseDatos();
+                break;
+            case 6:
                 System.out.println("Hasta luego");
                 break;
             default:
@@ -114,6 +136,9 @@ public class TiendaConsola {
             case 3:
                 menuPlantillaArchivos();
                 break;
+
+            case   4:
+
             case 7:
                 mostrarMenu();
                 break;
@@ -551,6 +576,90 @@ public class TiendaConsola {
 
     }
 
+    private static void menuBaseDatos(){
+        System.out.println("Menu Base de Datos" + "\n");
+        System.out.println("1. Base de Datos Articulos");
+        System.out.println("2. Base de Datos Clientes");
+        System.out.println("3. Base de Datos Empleados");
+        System.out.println("4. Salir");
+        int opcion = ConsoleReader.readInt();
+
+        switch (opcion) {
+            case 1:
+                menuBaseDatosArticulos();
+                break;
+            case 2:
+                //menuBaseDatosClientes();
+                break;
+            case 3:
+                //menuBaseDatosEmpleados();
+                break;
+            case 4:
+                mostrarMenu();
+                break;
+        }
+    }
+
+    private static void menuBaseDatosArticulos(){
+        System.out.println("Menu Base de Datos Articulos" + "\n");
+        System.out.println("1. Listar articulos");
+        System.out.println("2. Listar Ropa por Tipo");
+        System.out.println("3. Listar Accesorios por Tipo");
+        System.out.println("4. Buscar articulo por cod_art (id)");
+        System.out.println("5. Salir");
+        int opcion = ConsoleReader.readInt();
+
+        switch (opcion) {
+            case 1:
+                List<Articulo> listArticulos = articuloDAO.obtenerTodos();
+                for (Articulo articulo : listArticulos) {
+                    if (articulo instanceof Ropa) {
+                        System.out.println(ropaDAO.obtenerPorId(articulo.getCod_art()));
+                    } else {
+                        System.out.println(accesorioDAO.obtenerPorId(articulo.getCod_art()));
+                    }
+                }
+
+                menuBaseDatosArticulos();
+                break;
+
+
+            case 2:
+                System.out.println("Camisa, Chaqueta o Pantalon?");
+
+                List<Ropa> listRopa = ropaDAO.obtenerPorTipo(ConsoleReader.readString());
+                for (Ropa ropa : listRopa) {
+                    System.out.println(ropa);
+                }
+                menuBaseDatosArticulos();
+                break;
+
+            case 3:
+                System.out.println("Bolso o Zapato?");
+                List<Accesorio> listaccesorio = accesorioDAO.obtenerPorTipo(ConsoleReader.readString());
+                for (Accesorio accesorio : listaccesorio) {
+                    System.out.println(accesorio);
+                }
+                menuBaseDatosArticulos();
+                break;
+
+            case 4:
+                System.out.println("Introduce el id del articulo");
+                Articulo art = articuloDAO.obtenerPorId(ConsoleReader.readInt());
+                if (art instanceof Ropa) {
+                    System.out.println(ropaDAO.obtenerPorId(art.getCod_art()));
+                } else {
+                    System.out.println(accesorioDAO.obtenerPorId(art.getCod_art()));
+                }
+                menuBaseDatosArticulos();
+                break;
+
+                case 5:
+                menuBaseDatos();
+                break;
+        }
+
+    }
 
 
 

@@ -1,10 +1,8 @@
 package iescamp.tienda.modelo.Usuarios;
 
-import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.*;
 
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import java.time.LocalDate;
 public class Empleado extends Usuario implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private boolean tienePrivilegios;

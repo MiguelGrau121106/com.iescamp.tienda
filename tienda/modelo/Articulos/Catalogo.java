@@ -271,12 +271,12 @@ public class Catalogo implements Serializable {
         return bolsosByTipoCierre;
     }
 
-    public ArrayList<Bolso> getBolsoByCapacidad(String capacidad) {
+    public ArrayList<Bolso> getBolsoByCapacidad(int capacidad) {
         ArrayList<Bolso> bolsosByCapacidad = new ArrayList<>();
         for (Articulo articulo : articulos) {
             if (articulo instanceof Bolso) {
                 Bolso bolso = (Bolso) articulo;
-                if (bolso.getCapacidad().equals(capacidad)) {
+                if (bolso.getCapacidad() == capacidad) {
                     bolsosByCapacidad.add(bolso);
                 }
             }

@@ -10,12 +10,16 @@ public class LineaPedido implements java.io.Serializable {
 
 
     private Articulo articulo;
+    private Pedido pedido;
 
 
+    public Pedido getPedido() {
+        return pedido;
+    }
 
-
-
-
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
 
     public Articulo getArticulo() {
         return articulo;
@@ -26,41 +30,28 @@ public class LineaPedido implements java.io.Serializable {
     }
 
 
-
-
-    @Override
-    public String toString() {
-        return "LineaPedido{" +
-
-                ", articulo=" + articulo +
-
-
-
-
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         LineaPedido that = (LineaPedido) o;
-        return Objects.equals(articulo, that.articulo);
-
+        return Objects.equals(articulo, that.articulo) && Objects.equals(pedido, that.pedido);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(articulo);
+        return Objects.hash(articulo, pedido);
     }
 
-    public LineaPedido(Articulo articulo) {
-
+    public LineaPedido(Articulo articulo, Pedido pedido) {
         this.articulo = articulo;
+        this.pedido = pedido;
+    }
 
-
-
+    @Override
+    public String toString() {
+        return "LineaPedido{" +
+                "articulo=" + articulo +
+                ", pedido=" + pedido +
+                '}';
     }
 }

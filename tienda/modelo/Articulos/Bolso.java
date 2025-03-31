@@ -1,12 +1,13 @@
 package iescamp.tienda.modelo.Articulos;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.*;
+
+import java.util.Objects;
 
 public class Bolso extends Accesorio implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private String tipoCierre;
-    private String capacidad;
+    private int capacidad;
     //GETTER Y SETTER
 
     public String getTipoCierre() {
@@ -17,11 +18,11 @@ public class Bolso extends Accesorio implements java.io.Serializable {
         this.tipoCierre = tipoCierre;
     }
 
-    public String getCapacidad() {
+    public int getCapacidad() {
         return capacidad;
     }
 
-    public void setCapacidad(String capacidad) {
+    public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
     //Constructor
@@ -41,7 +42,7 @@ public class Bolso extends Accesorio implements java.io.Serializable {
         @JsonProperty("estilo") String estilo,
         @JsonProperty("esPersonalizado") Boolean esPersonalizado,
         @JsonProperty("tipoCierre") String tipoCierre,
-        @JsonProperty("capacidad") String capacidad
+        @JsonProperty("capacidad") int capacidad
     ) {
         super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, estilo, esPersonalizado, TipoAccesorio.BOLSO);
         this.tipoCierre = tipoCierre;
@@ -53,7 +54,7 @@ public class Bolso extends Accesorio implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Bolso{" +
+        return super.toString() + "Bolso{" +
                 "tipoCierre='" + tipoCierre + '\'' +
                 ", capacidad='" + capacidad + '\'' +
                 '}';

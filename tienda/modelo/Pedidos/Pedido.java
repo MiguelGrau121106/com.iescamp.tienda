@@ -117,7 +117,7 @@ public class Pedido implements java.io.Serializable {
     }
 
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Pedido{" +
                 "NumeroPedido=" + NumeroPedido +
                 ", FechaPedido=" + FechaPedido +
@@ -131,7 +131,7 @@ public class Pedido implements java.io.Serializable {
                 '}';
     }
 
-    public java.lang.String MostrarPedido(){
+    public String MostrarPedido(){
         return  "Pedido{" +
                 "NumeroPedido=" + NumeroPedido +
                 ", FechaPedido=" + FechaPedido +

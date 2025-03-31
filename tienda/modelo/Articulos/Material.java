@@ -1,8 +1,9 @@
 package iescamp.tienda.modelo.Articulos;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.io.Serializable;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.*;
 
 public class Material implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -1,7 +1,9 @@
 package iescamp.tienda.modelo.Articulos;
+
 import com.fasterxml.jackson.annotation.*;
-import java.util.Objects;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.CLASS,
@@ -14,7 +16,7 @@ import java.io.Serializable;
         @JsonSubTypes.Type(value = Ropa.class, name = "ropa")
 })
 
-public abstract class Articulo implements Serializable {
+public class Articulo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Material material;

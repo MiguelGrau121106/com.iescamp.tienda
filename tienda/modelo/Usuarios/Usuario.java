@@ -1,11 +1,9 @@
 package iescamp.tienda.modelo.Usuarios;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.*;
-import iescamp.tienda.modelo.Articulos.Accesorio;
-import iescamp.tienda.modelo.Articulos.Ropa;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.CLASS,

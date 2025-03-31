@@ -1,7 +1,8 @@
 package iescamp.tienda.modelo.Articulos;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.*;
+
+import java.util.Objects;
 public class Accesorio extends Articulo implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private String estilo;

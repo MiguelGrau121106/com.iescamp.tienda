@@ -1,9 +1,10 @@
 package iescamp.tienda.modelo.Usuarios;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.*;
 public class Cliente extends Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     private String direccionEnvio;

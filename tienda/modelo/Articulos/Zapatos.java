@@ -1,7 +1,8 @@
 package iescamp.tienda.modelo.Articulos;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.*;
+
+import java.util.Objects;
 public class Zapatos extends Accesorio implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private int tallaZapatos;
@@ -51,7 +52,7 @@ public class Zapatos extends Accesorio implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Zapatos{" +
+        return super.toString() + "Zapatos{" +
                 "tallaZapatos=" + tallaZapatos +
                 ", tipoSuela='" + tipoSuela + '\'' +
                 '}';

@@ -1,28 +1,22 @@
 package iescamp.tienda.test;
+
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import iescamp.tienda.modelo.Articulos.*;
 import iescamp.tienda.modelo.Articulos.Articulo;
 import iescamp.tienda.modelo.Articulos.Catalogo;
-import iescamp.tienda.modelo.Articulos.*;
 import iescamp.tienda.modelo.Pedidos.Ventas;
-import iescamp.tienda.modelo.Usuarios.Clientela;
 import iescamp.tienda.modelo.Usuarios.*;
-import iescamp.tienda.modelo.Pedidos.*;
+import iescamp.tienda.modelo.Usuarios.Clientela;
 import iescamp.tienda.modelo.Usuarios.Plantilla;
-import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.IOException;
-import java.io.*;
-import java.sql.Array;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.io.*;
+import java.time.LocalDate;
+import java.util.List;
 
 public class FileUtil {
 
@@ -357,7 +351,7 @@ public class FileUtil {
                         break;
                     case "Bolso":
                         Bolso bolso = (Bolso) a;
-                        specificFields = new String[]{bolso.getEstilo(), String.valueOf(bolso.getEsPersonalizado()), bolso.getTipoCierre(), bolso.getCapacidad()};
+                        specificFields = new String[]{bolso.getEstilo(), String.valueOf(bolso.getEsPersonalizado()), bolso.getTipoCierre(), String.valueOf(bolso.getCapacidad())};
                         break;
                     default:
                         specificFields = new String[]{};
@@ -407,7 +401,7 @@ public class FileUtil {
                         articulo = new Pantalon(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, fila[11], fila[12], Boolean.parseBoolean(fila[13]), fila[14]);
                         break;
                     case "Bolso":
-                        articulo = new Bolso(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, fila[11], Boolean.parseBoolean(fila[12]), fila[13], fila[14]);
+                        articulo = new Bolso(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, fila[11], Boolean.parseBoolean(fila[12]), fila[13], Integer.parseInt(fila[14]));
                         break;
                     default:
                         throw new IllegalArgumentException("Tipo de artículo desconocido: " + tipo);
