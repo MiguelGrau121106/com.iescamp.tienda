@@ -5,10 +5,12 @@ import com.opencsv.exceptions.CsvException;
 import iescamp.tienda.dao.AccesorioDAO;
 import iescamp.tienda.dao.*;
 import iescamp.tienda.modelo.Articulos.*;
+import iescamp.tienda.modelo.Pedidos.Pedido;
 import iescamp.tienda.modelo.Pedidos.Ventas;
 import iescamp.tienda.modelo.Usuarios.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,9 @@ public class TiendaConsola {
     private static final ArticuloDAO articuloDAO = new ArticuloDAO();
     private static final RopaDAO ropaDAO = new RopaDAO();
     private static final AccesorioDAO accesorioDAO = new AccesorioDAO();
+    private static final EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+    private static final ClienteDAO clienteDAO = new ClienteDAO();
+    private static final PedidoDAO pedidoDAO = new PedidoDAO();
 
 
     public static void main(String[] args) {
@@ -589,14 +594,129 @@ public class TiendaConsola {
                 menuBaseDatosArticulos();
                 break;
             case 2:
-                //menuBaseDatosClientes();
+                menuBaseDatosClientes();
                 break;
             case 3:
-                //menuBaseDatosEmpleados();
+                menuBaseDatosEmpleados();
                 break;
             case 4:
                 mostrarMenu();
                 break;
+        }
+    }
+
+    private static void menuBaseDatosEmpleados() {
+        System.out.println("Menu Base de Datos Empleados" + "\n");
+        System.out.println("1. Listar empleados");
+        System.out.println("2. Buscar empleado por DNI");
+        System.out.println("3. Validar contraseña");
+        System.out.println("4. Salir");
+
+        int opcion = ConsoleReader.readInt();
+        switch (opcion){
+            case 1:
+                List<Empleado> listEmpleados = empleadoDAO.obtenerTodos();
+                for (Empleado empleado : listEmpleados) {
+                    System.out.println(empleado);
+                }
+                menuBaseDatosEmpleados();
+                break;
+
+            case 2:
+                System.out.println("Introduce el DNI del empleado");
+                Empleado empleado = empleadoDAO.obtenerPorId(ConsoleReader.readString());
+                System.out.println(empleado);
+                menuBaseDatosEmpleados();
+                break;
+
+            case 3:
+                System.out.println("Introduce el email del empleado");
+                String email = ConsoleReader.readString();
+                System.out.println("Introduce la contraseña");
+                String pass = ConsoleReader.readString();
+                Empleado empleado1 = empleadoDAO.autenticarEmpleado(email, pass);
+                boolean verif = empleado1 != null;
+                if (verif) {
+                    System.out.println("Contraseña correcta");
+                } else {
+                    System.out.println("Contraseña incorrecta");
+                }
+                menuBaseDatosEmpleados();
+                break;
+
+            case 4:
+                menuBaseDatos();
+                break;
+        }
+    }
+
+
+    public static void menuBaseDatosClientes(){
+        System.out.println("Menu Base de Datos Clientes" + "\n");
+        System.out.println("1. Listar Clientes");
+        System.out.println("2. Buscar Cliente por DNI");
+        System.out.println("3. Validar Contraseña");
+        System.out.println("4. Listar pedidos de un cliente");
+        System.out.println("5. Salir");
+        int opcion = ConsoleReader.readInt();
+        switch (opcion) {
+
+            case 1:
+                List<Cliente> listClientes = clienteDAO.obtenerTodos();
+                for (Cliente cliente : listClientes) {
+                    System.out.println(cliente);
+                }
+                menuBaseDatosClientes();
+                break;
+
+            case 2:
+                System.out.println("Introduce el DNI del cliente");
+                Cliente cliente = clienteDAO.obtenerPorId(ConsoleReader.readString());
+                System.out.println(cliente);
+                menuBaseDatosClientes();
+                break;
+
+            case 3:
+                System.out.println("Introduce el email del cliente:");
+                String email = ConsoleReader.readString();
+
+                System.out.println("Introduce la contraseña:");
+                String pass = ConsoleReader.readString();
+
+                Cliente clienteAutenticado = clienteDAO.autenticarCliente(email, pass);
+
+                if (clienteAutenticado != null) {
+                    System.out.println("Autenticación exitosa. Datos del cliente:");
+                    System.out.println(clienteAutenticado);
+                } else {
+                    System.out.println("Error: Email o contraseña incorrectos.");
+                }
+                menuBaseDatosClientes();
+                break;
+
+            case 4:
+
+                System.out.println("Introduce el DNI del cliente");
+                Cliente cliente1 = clienteDAO.obtenerPorId(ConsoleReader.readString());
+                try {
+                    List<Pedido> pedidos = pedidoDAO.obtenerPedidosPorCliente(cliente1);
+                    for (Pedido pedido : pedidos) {
+                        System.out.println(pedido);
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                menuBaseDatosClientes();
+
+
+                break;
+
+            case 5:
+                menuBaseDatos();
+                break;
+            default:
+                System.out.println("Opcion no valida");
+                menuBaseDatosClientes();
         }
     }
 
@@ -658,10 +778,5 @@ public class TiendaConsola {
                 menuBaseDatos();
                 break;
         }
-
     }
-
-
-
-
 }

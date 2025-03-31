@@ -108,6 +108,26 @@ public class PedidoDAO implements GenericDAO<Pedido, Integer> {
 
         );
     }
+
+    public List<Pedido> obtenerPedidosPorCliente(Cliente cliente) throws SQLException {
+        String sql = "SELECT * FROM pedido WHERE DNI_cliente = ?";
+        try {
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, cliente.getDNI());
+            ResultSet rs = stmt.executeQuery();
+            List<Pedido> pedidos = new ArrayList<>();
+            while (rs.next()) {
+                pedidos.add(construirDesdeResultSet(rs));
+            }
+            return pedidos;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 }
 
 
