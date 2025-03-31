@@ -1,8 +1,10 @@
 package iescamp.tienda.modelo.Articulos;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.*;
 
-public class Zapatos extends Accesorio {
+import java.util.Objects;
+public class Zapatos extends Accesorio implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private int tallaZapatos;
     private String tipoSuela;
     //GETTER Y SETTER
@@ -24,7 +26,22 @@ public class Zapatos extends Accesorio {
     }
     //CONSTRUCTOR
 
-    public Zapatos(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, String estilo, Boolean esPersonalizado, int tallaZapatos, String tipoSuela) {
+    @JsonCreator
+    public Zapatos(
+        @JsonProperty("material") Material material,
+        @JsonProperty("cod_art") int cod_art,
+        @JsonProperty("activo") boolean activo,
+        @JsonProperty("color") String color,
+        @JsonProperty("imagen") String imagen,
+        @JsonProperty("nombre") String nombre,
+        @JsonProperty("precio") double precio,
+        @JsonProperty("marca") String marca,
+        @JsonProperty("descripcion") String descripcion,
+        @JsonProperty("estilo") String estilo,
+        @JsonProperty("esPersonalizado") Boolean esPersonalizado,
+        @JsonProperty("tallaZapatos") int tallaZapatos,
+        @JsonProperty("tipoSuela") String tipoSuela
+    ) {
         super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, estilo, esPersonalizado, TipoAccesorio.ZAPATOS);
         this.tallaZapatos = tallaZapatos;
         this.tipoSuela = tipoSuela;
@@ -35,7 +52,7 @@ public class Zapatos extends Accesorio {
 
     @Override
     public String toString() {
-        return "Zapatos{" +
+        return super.toString() + "Zapatos{" +
                 "tallaZapatos=" + tallaZapatos +
                 ", tipoSuela='" + tipoSuela + '\'' +
                 '}';

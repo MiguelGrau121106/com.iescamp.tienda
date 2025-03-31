@@ -1,9 +1,9 @@
 package iescamp.tienda.test;
 
-import iescamp.tienda.modelo.Pedidos.LineaPedido;
-import iescamp.tienda.modelo.Usuarios.*;
 import iescamp.tienda.modelo.Articulos.*;
-import iescamp.tienda.test.ConsoleReader;
+import iescamp.tienda.modelo.Pedidos.LineaPedido;
+import iescamp.tienda.modelo.Pedidos.Pedido;
+import iescamp.tienda.modelo.Usuarios.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -52,7 +52,7 @@ public class ConsoleUtil {
         String estilo = ConsoleReader.readString("Estilo: ");
         boolean personalizado = ConsoleReader.readBoolean("¿Es personalizado? ");
         String tipoCierre = ConsoleReader.readString("Tipo de cierre: ");
-        String capacidad = ConsoleReader.readString("Capacidad: ");
+        int capacidad = ConsoleReader.readInt("Capacidad: ");
         boolean activo = ConsoleReader.readBoolean("¿Está activo el bolso?");
 
         return new Bolso(material, cod_art, activo, color, imagen, nombre, precio.doubleValue(), marca, descripcion, estilo, personalizado, tipoCierre, capacidad);
@@ -141,10 +141,10 @@ public class ConsoleUtil {
         return new Cliente(DNI, nombre, apellidos, direccion, correoElectronico, telefono, fechaNacimiento, pass, activo, direccionEnvio, saldoCuenta, tieneTarjetaFidelidad, numeroPedidosRealizados, metodoPago);
     }
 
-    public static LineaPedido crearLineaPedido(Articulo articulo){
+    public static LineaPedido crearLineaPedido(Articulo articulo, Pedido pedido){
         System.out.println("Creando una linea de pedido...");
 
-        return new LineaPedido(articulo);
+        return new LineaPedido(articulo, pedido);
     }
 
     public static Material crearMaterial(){

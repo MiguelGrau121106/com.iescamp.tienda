@@ -1,9 +1,10 @@
 package iescamp.tienda.modelo.Usuarios;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-
 public class Cliente extends Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     private String direccionEnvio;
@@ -52,7 +53,23 @@ public class Cliente extends Usuario implements Serializable {
         this.metodoPago = metodoPago;
     }
 
-    public Cliente(String DNI, String nombre, String apellidos, String direccion, String correoElectronico, String telefono, LocalDate fechaNacimiento, String pass, boolean activo, String direccionEnvio, float saldoCuenta, boolean tieneTarjetaFidelidad, int numeroPedidosRealizados, MetodoPago metodoPago) {
+    @JsonCreator
+    public Cliente(
+            @JsonProperty("DNI") String DNI,
+            @JsonProperty("nombre") String nombre,
+            @JsonProperty("apellidos") String apellidos,
+            @JsonProperty("direccion") String direccion,
+            @JsonProperty("correoElectronico") String correoElectronico,
+            @JsonProperty("telefono") String telefono,
+            @JsonProperty("fechaNacimiento") LocalDate fechaNacimiento,
+            @JsonProperty("pass") String pass,
+            @JsonProperty("activo") boolean activo,
+            @JsonProperty("direccionEnvio") String direccionEnvio,
+            @JsonProperty("saldoCuenta") float saldoCuenta,
+            @JsonProperty("tieneTarjetaFidelidad") boolean tieneTarjetaFidelidad,
+            @JsonProperty("numeroPedidosRealizados") int numeroPedidosRealizados,
+            @JsonProperty("metodoPago") MetodoPago metodoPago
+    ) {
         super(DNI, nombre, apellidos, direccion, correoElectronico, telefono, fechaNacimiento, pass, activo);
         this.direccionEnvio = direccionEnvio;
         this.saldoCuenta = saldoCuenta;

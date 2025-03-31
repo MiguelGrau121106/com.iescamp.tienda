@@ -1,10 +1,23 @@
 package iescamp.tienda.modelo.Articulos;
 
-import iescamp.tienda.modelo.Articulos.*;
+import com.fasterxml.jackson.annotation.*;
 
-import java.util.Objects;
 import java.io.Serializable;
-public class Articulo  {
+import java.util.Objects;
+
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
+
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Accesorio.class, name = "accesorio"),
+        @JsonSubTypes.Type(value = Ropa.class, name = "ropa")
+})
+
+public class Articulo implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Material material;
     private int cod_art;
@@ -111,14 +124,21 @@ public class Articulo  {
 
     // constructor
 
-    public Articulo(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion) {
+    @JsonCreator
+    public Articulo(
+            @JsonProperty("material") Material material,
+            @JsonProperty("cod_art") int cod_art,
+            @JsonProperty("activo") boolean activo,
+            @JsonProperty("color") String color,
+            @JsonProperty("imagen") String imagen,
+            @JsonProperty("nombre") String nombre,
+            @JsonProperty("precio") double precio,
+            @JsonProperty("marca") String marca,
+            @JsonProperty("descripcion") String descripcion) {
         this.material = material;
         this.cod_art = cod_art;
         this.activo = activo;
-
         this.color = color;
-
-
         this.imagen = imagen;
         this.nombre = nombre;
         this.precio = precio;

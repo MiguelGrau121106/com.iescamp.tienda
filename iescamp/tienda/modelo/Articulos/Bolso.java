@@ -1,10 +1,13 @@
 package iescamp.tienda.modelo.Articulos;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.Objects;
 
-public class Bolso extends Accesorio {
+public class Bolso extends Accesorio implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private String tipoCierre;
-    private String capacidad;
+    private int capacidad;
     //GETTER Y SETTER
 
     public String getTipoCierre() {
@@ -15,16 +18,32 @@ public class Bolso extends Accesorio {
         this.tipoCierre = tipoCierre;
     }
 
-    public String getCapacidad() {
+    public int getCapacidad() {
         return capacidad;
     }
 
-    public void setCapacidad(String capacidad) {
+    public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
     //Constructor
 
-    public Bolso(Material material, int cod_art, boolean activo, String color, String imagen, String nombre, double precio, String marca, String descripcion, String estilo, Boolean esPersonalizado, String tipoCierre, String capacidad) {
+
+    @JsonCreator
+    public Bolso(
+        @JsonProperty("material") Material material,
+        @JsonProperty("cod_art") int cod_art,
+        @JsonProperty("activo") boolean activo,
+        @JsonProperty("color") String color,
+        @JsonProperty("imagen") String imagen,
+        @JsonProperty("nombre") String nombre,
+        @JsonProperty("precio") double precio,
+        @JsonProperty("marca") String marca,
+        @JsonProperty("descripcion") String descripcion,
+        @JsonProperty("estilo") String estilo,
+        @JsonProperty("esPersonalizado") Boolean esPersonalizado,
+        @JsonProperty("tipoCierre") String tipoCierre,
+        @JsonProperty("capacidad") int capacidad
+    ) {
         super(material, cod_art, activo, color, imagen, nombre, precio, marca, descripcion, estilo, esPersonalizado, TipoAccesorio.BOLSO);
         this.tipoCierre = tipoCierre;
         this.capacidad = capacidad;
@@ -35,7 +54,7 @@ public class Bolso extends Accesorio {
 
     @Override
     public String toString() {
-        return "Bolso{" +
+        return super.toString() + "Bolso{" +
                 "tipoCierre='" + tipoCierre + '\'' +
                 ", capacidad='" + capacidad + '\'' +
                 '}';

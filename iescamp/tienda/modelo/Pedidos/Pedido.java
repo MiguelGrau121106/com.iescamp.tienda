@@ -7,7 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Pedido {
+public class Pedido implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private int NumeroPedido;
     private LocalDate FechaPedido;
 
@@ -116,7 +117,7 @@ public class Pedido {
     }
 
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Pedido{" +
                 "NumeroPedido=" + NumeroPedido +
                 ", FechaPedido=" + FechaPedido +
@@ -130,7 +131,7 @@ public class Pedido {
                 '}';
     }
 
-    public java.lang.String MostrarPedido(){
+    public String MostrarPedido(){
         return  "Pedido{" +
                 "NumeroPedido=" + NumeroPedido +
                 ", FechaPedido=" + FechaPedido +

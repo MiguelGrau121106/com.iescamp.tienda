@@ -5,7 +5,8 @@ package iescamp.tienda.modelo.Pedidos;
 import java.util.ArrayList;
 
 
-public class Ventas {
+public class Ventas implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     ArrayList<Pedido> pedidos = new ArrayList<>();
 
     public void addPedido(Pedido pedido){
@@ -77,8 +78,8 @@ public class Ventas {
         return pedidosCliente;
     }
 
-    public java.lang.String listarPedidos() {
-        java.lang.String lista = "";
+    public String listarPedidos() {
+        String lista = "";
         for (Pedido p: pedidos) {
             lista += p.toString() + "\n";
         }

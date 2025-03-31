@@ -1,5 +1,7 @@
 package iescamp.tienda.modelo.Articulos;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -39,8 +41,8 @@ public class Material implements Serializable {
     }
 
     // Constructor
-
-    public Material(int codigo, String denominacion) {
+    @JsonCreator
+    public Material(@JsonProperty("codigo") int codigo,@JsonProperty("denominacion") String denominacion) {
         this.codigo = codigo;
         this.denominacion = denominacion;
     }
