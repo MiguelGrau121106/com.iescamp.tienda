@@ -1,6 +1,8 @@
-package iescamp.tienda.modelo.Usuarios;
+package iescamp.tienda.tienda.modelo.Usuarios;
 
 import com.fasterxml.jackson.annotation.*;
+import iescamp.tienda.modelo.Usuarios.Cliente;
+import iescamp.tienda.modelo.Usuarios.Empleado;
 
 import java.io.Serializable;
 import java.time.LocalDate;

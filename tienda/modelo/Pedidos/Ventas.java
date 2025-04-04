@@ -1,24 +1,27 @@
-package iescamp.tienda.modelo.Pedidos;
+package iescamp.tienda.tienda.modelo.Pedidos;
 
 
+
+import iescamp.tienda.modelo.Pedidos.EstadoPedido;
+import iescamp.tienda.modelo.Pedidos.Pedido;
 
 import java.util.ArrayList;
 
 
 public class Ventas implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
-    ArrayList<Pedido> pedidos = new ArrayList<>();
+    ArrayList<iescamp.tienda.modelo.Pedidos.Pedido> pedidos = new ArrayList<>();
 
-    public void addPedido(Pedido pedido){
+    public void addPedido(iescamp.tienda.modelo.Pedidos.Pedido pedido){
         pedidos.add(pedido);
     }
 
-    public ArrayList<Pedido> getPedidos() {
+    public ArrayList<iescamp.tienda.modelo.Pedidos.Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void ActualizarPedido(Pedido pedido){
-        for (Pedido p: pedidos) {
+    public void ActualizarPedido(iescamp.tienda.modelo.Pedidos.Pedido pedido){
+        for (iescamp.tienda.modelo.Pedidos.Pedido p: pedidos) {
             if (p.equals(pedido)){
                 p.setEstado(pedido.getEstado());
                 p.setDNI(pedido.getDNI());
@@ -33,12 +36,12 @@ public class Ventas implements java.io.Serializable {
 
     //CRUD -> Create, Read, Update, Delete
 
-    public void EliminarPedido(Pedido pedido){
+    public void EliminarPedido(iescamp.tienda.modelo.Pedidos.Pedido pedido){
         pedidos.remove(pedido);
     }
 
-    public Pedido BuscarPedido(int numeroPedido){
-        for (Pedido p: pedidos) {
+    public iescamp.tienda.modelo.Pedidos.Pedido BuscarPedido(int numeroPedido){
+        for (iescamp.tienda.modelo.Pedidos.Pedido p: pedidos) {
             if (p.getNumeroPedido() == numeroPedido){
                 return p;
             }
@@ -52,7 +55,7 @@ public class Ventas implements java.io.Serializable {
         if (pedidos.isEmpty()){
             return false;
         }
-        for (Pedido p: pedidos) {
+        for (iescamp.tienda.modelo.Pedidos.Pedido p: pedidos) {
             System.out.println(p);
             return true;
         }
@@ -61,16 +64,16 @@ public class Ventas implements java.io.Serializable {
     }
 
     public void BuscarPedidoPorEstado(EstadoPedido estado){
-        for (Pedido p: pedidos) {
+        for (iescamp.tienda.modelo.Pedidos.Pedido p: pedidos) {
             if (p.getEstado().equals(estado)){
                 System.out.println(p);
             }
         }
     }
 
-    public ArrayList<Pedido> BuscarPedidoByCliente(String string){
-        ArrayList<Pedido> pedidosCliente = new ArrayList<>();
-        for (Pedido p: pedidos) {
+    public ArrayList<iescamp.tienda.modelo.Pedidos.Pedido> BuscarPedidoByCliente(String string){
+        ArrayList<iescamp.tienda.modelo.Pedidos.Pedido> pedidosCliente = new ArrayList<>();
+        for (iescamp.tienda.modelo.Pedidos.Pedido p: pedidos) {
             if (p.getDNI().equals(string)){
                 pedidosCliente.add(p);
             }

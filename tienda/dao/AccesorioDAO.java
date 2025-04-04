@@ -1,5 +1,7 @@
-package iescamp.tienda.dao;
+package iescamp.tienda.tienda.dao;
 
+import iescamp.tienda.dao.DBUtil;
+import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Articulos.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ public class AccesorioDAO implements GenericDAO<Accesorio, Integer> {
 
     @Override
     public void insertar(Accesorio accesorio) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             ArticuloDAO Adao = new ArticuloDAO();
             Adao.insertar(accesorio);
             String sql = "INSERT INTO accesorio (cod_art, estilo, personalizado, tipo_cierre_bolso, capacidad, talla_zapato, tipo_suela, tipo_accesorio) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -47,7 +49,7 @@ public class AccesorioDAO implements GenericDAO<Accesorio, Integer> {
 
     @Override
     public Accesorio obtenerPorId(Integer id) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             String sql = "SELECT * FROM accesorio, articulo WHERE accesorio.cod_art = articulo.cod_art AND accesorio.cod_art = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
@@ -65,7 +67,7 @@ public class AccesorioDAO implements GenericDAO<Accesorio, Integer> {
     public List<Accesorio> obtenerTodos() {
         List<Accesorio> accesorioList = new ArrayList<>();
         String sql = "SELECT * FROM accesorio, articulo WHERE accesorio.cod_art = articulo.cod_art";
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -82,7 +84,7 @@ public class AccesorioDAO implements GenericDAO<Accesorio, Integer> {
         ArticuloDAO Adao = new ArticuloDAO();
         Adao.actualizar(accesorio);
         String sql = "UPDATE accesorio SET estilo = ?, personalizado = ?, tipo_cierre_bolso = ?, capacidad = ?, talla_zapato = ?, tipo_suela = ?, tipo_accesorio = ? WHERE cod_art = ?";
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, accesorio.getEstilo());
             pstmt.setBoolean(2, accesorio.getEsPersonalizado());
@@ -119,7 +121,7 @@ public class AccesorioDAO implements GenericDAO<Accesorio, Integer> {
         ArticuloDAO Adao = new ArticuloDAO();
         Adao.eliminar(id);
         String sql = "DELETE FROM accesorio WHERE cod_art = ?";
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
@@ -130,18 +132,24 @@ public class AccesorioDAO implements GenericDAO<Accesorio, Integer> {
 
     @Override
     public Accesorio construirDesdeResultSet(ResultSet rs) throws SQLException {
-        ArticuloDAO Adao = new ArticuloDAO();
-        Articulo art = Adao.construirDesdeResultSet(rs);
-        String nombre = art.getNombre();
-        double precio = art.getPrecio();
-        String marca = art.getMarca();
-        String descripcion = art.getDescripcion();
-        boolean activo = art.isActivo();
-        String imagen = art.getImagen();
-        String color = art.getColor();
-        Material material = art.getMaterial();
+        MaterialDAO materialDAO = new MaterialDAO();
+        // Obtener los datos del ResultSet
+        Material material = materialDAO.obtenerPorId(rs.getInt("material"));
+        String nombre = rs.getString("nombre");
+        String imagen = rs.getString("imagen");
+        double precio = rs.getDouble("precio");
+        String marca = rs.getString("marca");
+        String descripcion = rs.getString("descripcion");
+
+
+        boolean activo = rs.getBoolean("activo");
+        String color = rs.getString("color");
+
 
         int cod_art = rs.getInt("cod_art");
+
+
+
         String estilo = rs.getString("estilo");
         boolean esPersonalizado = rs.getBoolean("personalizado");
         String tipoAccesorio = rs.getString("tipo_accesorio");

@@ -1,5 +1,7 @@
-package iescamp.tienda.dao;
+package iescamp.tienda.tienda.dao;
 
+import iescamp.tienda.dao.DBUtil;
+import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Usuarios.Departamento;
 
 import java.sql.*;
@@ -10,7 +12,7 @@ public class DepartamentoDAO implements GenericDAO<Departamento, Integer> {
 
     @Override
     public void insertar(Departamento departamento) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             String sql = "INSERT INTO departamento (codigo, nombre) VALUES (?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, departamento.getCodigo());
@@ -23,7 +25,7 @@ public class DepartamentoDAO implements GenericDAO<Departamento, Integer> {
 
     @Override
     public Departamento obtenerPorId(Integer codigo) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             String sql = "SELECT * FROM departamento WHERE codigo = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, codigo);
@@ -43,7 +45,7 @@ public class DepartamentoDAO implements GenericDAO<Departamento, Integer> {
     public List<Departamento> obtenerTodos() {
         List<Departamento> departamento = new ArrayList<>();
         String sql = "SELECT * FROM departamento";
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -59,7 +61,7 @@ public class DepartamentoDAO implements GenericDAO<Departamento, Integer> {
     public void actualizar(Departamento departamento) {
         String sql = "UPDATE departamento SET nombre = ? WHERE codigo = ?";
         try {
-            Connection conn = DBUtil.getConnection();
+            Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, departamento.getNombre());
             stmt.setInt(2, departamento.getCodigo());

@@ -1,4 +1,4 @@
-package iescamp.tienda.test;
+package iescamp.tienda.tienda.test;
 
 
 public class Test {

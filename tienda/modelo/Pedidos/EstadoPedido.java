@@ -1,4 +1,4 @@
-package iescamp.tienda.modelo.Pedidos;
+package iescamp.tienda.tienda.modelo.Pedidos;
 
 public enum EstadoPedido {
     EN_PROCESO("En proceso"), COMPLETADO("Completado"), CANCELADO("Cancelado");

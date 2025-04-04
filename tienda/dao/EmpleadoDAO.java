@@ -1,5 +1,7 @@
-package iescamp.tienda.dao;
+package iescamp.tienda.tienda.dao;
 
+import iescamp.tienda.dao.DBUtil;
+import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Usuarios.Cliente;
 import iescamp.tienda.modelo.Usuarios.Departamento;
 import iescamp.tienda.modelo.Usuarios.Empleado;
@@ -8,10 +10,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpleadoDAO implements GenericDAO<Empleado, String>{
+public class EmpleadoDAO implements GenericDAO<Empleado, String> {
     @Override
     public void insertar(Empleado obj) {
-        try(Connection conn = DBUtil.getConnection()) {
+        try(Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO empleado (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, activo, pass, saldo_cuenta, cum_pedidos, dir_envio, tarjeta_fidelizacion, m_pago) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pstmt.setString(1, obj.getDNI());
             pstmt.setString(2,  obj.getNombre());
@@ -40,7 +42,7 @@ public class EmpleadoDAO implements GenericDAO<Empleado, String>{
 
     @Override
     public Empleado obtenerPorId(String DNI) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM empleado WHERE DNI = ?");
             pstmt.setString(1, DNI);
             ResultSet rs = pstmt.executeQuery();
@@ -59,7 +61,7 @@ public class EmpleadoDAO implements GenericDAO<Empleado, String>{
     public java.util.List<Empleado> obtenerTodos() {
         List<Empleado> pedido = new ArrayList<>();
         String sql = "SELECT * FROM empleado";
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -73,7 +75,7 @@ public class EmpleadoDAO implements GenericDAO<Empleado, String>{
 
     @Override
     public void actualizar(Empleado obj) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("UPDATE empleado SET DNI = ?, nombre = ?, apellidos = ?, telefono = ?, f_nacimiento = ?, direccion = ?, email = ?, activo = ?, pass = ?, tiene_privilegios = ?, dpto = ? WHERE DNI = ?");
             pstmt.setString(1, obj.getDNI());
             pstmt.setString(2,  obj.getNombre());
@@ -100,7 +102,7 @@ public class EmpleadoDAO implements GenericDAO<Empleado, String>{
 
     @Override
     public void eliminar(String DNI) {
-        try  (Connection conn = DBUtil.getConnection()) {
+        try  (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM cliente WHERE DNI = ?");
             pstmt.setString(1, DNI);
             int filasAfectadas = pstmt.executeUpdate();
@@ -136,7 +138,7 @@ public class EmpleadoDAO implements GenericDAO<Empleado, String>{
         );
     }
     public Empleado obtenerPorEmail(String email) {
-        try (var conn = DBUtil.getConnection()) {
+        try (var conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             var pstmt = conn.prepareStatement("SELECT * FROM empleado WHERE email = ?");
             pstmt.setString(1, email);
             var rs = pstmt.executeQuery();

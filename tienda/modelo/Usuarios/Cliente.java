@@ -1,6 +1,8 @@
-package iescamp.tienda.modelo.Usuarios;
+package iescamp.tienda.tienda.modelo.Usuarios;
 
 import com.fasterxml.jackson.annotation.*;
+import iescamp.tienda.modelo.Usuarios.MetodoPago;
+import iescamp.tienda.modelo.Usuarios.Usuario;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -11,7 +13,7 @@ public class Cliente extends Usuario implements Serializable {
     private float saldoCuenta;
     private boolean tieneTarjetaFidelidad;
     private int numeroPedidosRealizados;
-    private MetodoPago metodoPago;
+    private iescamp.tienda.modelo.Usuarios.MetodoPago metodoPago;
 
     public String getDireccionEnvio() {
         return direccionEnvio;
@@ -45,11 +47,11 @@ public class Cliente extends Usuario implements Serializable {
         this.numeroPedidosRealizados = numeroPedidosRealizados;
     }
 
-    public MetodoPago getMetodoPago() {
+    public iescamp.tienda.modelo.Usuarios.MetodoPago getMetodoPago() {
         return metodoPago;
     }
 
-    public void setMetodoPago(MetodoPago metodoPago) {
+    public void setMetodoPago(iescamp.tienda.modelo.Usuarios.MetodoPago metodoPago) {
         this.metodoPago = metodoPago;
     }
 

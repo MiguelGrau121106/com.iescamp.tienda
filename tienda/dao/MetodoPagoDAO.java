@@ -1,17 +1,19 @@
-package iescamp.tienda.dao;
+package iescamp.tienda.tienda.dao;
 
 
+import iescamp.tienda.dao.DBUtil;
+import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Usuarios.MetodoPago;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class MetodoPagoDAO implements GenericDAO<MetodoPago, String>{
+public class MetodoPagoDAO implements GenericDAO<MetodoPago, String> {
 
     @Override
     public void insertar(MetodoPago obj) {
-     try (var conn = DBUtil.getConnection()) {
+     try (var conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             var pstmt = conn.prepareStatement("INSERT INTO metodo_pago (codigo, descripcion) VALUES (?, ?)");
             pstmt.setInt(1, obj.getCodigo());
             pstmt.setString(2, obj.getDescripcion());
@@ -32,7 +34,7 @@ public class MetodoPagoDAO implements GenericDAO<MetodoPago, String>{
 
     @Override
     public MetodoPago obtenerPorId(String codigo) {
-        try (var conn = DBUtil.getConnection()) {
+        try (var conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             var pstmt = conn.prepareStatement("SELECT * FROM metodo_pago WHERE codigo = ?");
             pstmt.setString(1, codigo);
             var rs = pstmt.executeQuery();
@@ -48,7 +50,7 @@ public class MetodoPagoDAO implements GenericDAO<MetodoPago, String>{
 
     @Override
     public List<MetodoPago> obtenerTodos() {
-        try (var conn = DBUtil.getConnection()) {
+        try (var conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             var pstmt = conn.prepareStatement("SELECT * FROM metodo_pago");
             var rs = pstmt.executeQuery();
             List<MetodoPago> metodosPago = new java.util.ArrayList<>();
@@ -63,7 +65,7 @@ public class MetodoPagoDAO implements GenericDAO<MetodoPago, String>{
 
     @Override
     public void actualizar(MetodoPago obj) {
-        try (var conn = DBUtil.getConnection()) {
+        try (var conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             var pstmt = conn.prepareStatement("UPDATE metodo_pago SET descripcion = ? WHERE codigo = ?");
             pstmt.setString(1, obj.getDescripcion());
             pstmt.setInt(2, obj.getCodigo());
@@ -83,7 +85,7 @@ public class MetodoPagoDAO implements GenericDAO<MetodoPago, String>{
 
     @Override
     public void eliminar(String id) {
-        try (var conn = DBUtil.getConnection()) {
+        try (var conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             var pstmt = conn.prepareStatement("DELETE FROM metodo_pago WHERE codigo = ?");
             pstmt.setString(1, id);
             var filasAfectadas = pstmt.executeUpdate();

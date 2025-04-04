@@ -1,19 +1,21 @@
-package iescamp.tienda.modelo.Usuarios;
+package iescamp.tienda.tienda.modelo.Usuarios;
 
 import com.fasterxml.jackson.annotation.*;
+import iescamp.tienda.modelo.Usuarios.Departamento;
+import iescamp.tienda.modelo.Usuarios.Usuario;
 
 import java.time.LocalDate;
 public class Empleado extends Usuario implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private boolean tienePrivilegios;
-    private Departamento departamento;
+    private iescamp.tienda.modelo.Usuarios.Departamento departamento;
 
 
-    public Departamento getDepartamento() {
+    public iescamp.tienda.modelo.Usuarios.Departamento getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(Departamento departamento) {
+    public void setDepartamento(iescamp.tienda.modelo.Usuarios.Departamento departamento) {
         this.departamento = departamento;
     }
 

@@ -1,7 +1,10 @@
-package iescamp.tienda.modelo.Pedidos;
+package iescamp.tienda.tienda.modelo.Pedidos;
 
 
 
+
+import iescamp.tienda.modelo.Pedidos.EstadoPedido;
+import iescamp.tienda.modelo.Pedidos.LineaPedido;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,11 +15,11 @@ public class Pedido implements java.io.Serializable {
     private int NumeroPedido;
     private LocalDate FechaPedido;
 
-    private EstadoPedido estado;
+    private iescamp.tienda.modelo.Pedidos.EstadoPedido estado;
     private String DireccionEntrega;
     private int metodoPago;
 
-    private ArrayList<LineaPedido> lineasPedido = new ArrayList<>();
+    private ArrayList<iescamp.tienda.modelo.Pedidos.LineaPedido> lineasPedido = new ArrayList<>();
     private String DNI;
 
     // getter y setter
@@ -39,11 +42,11 @@ public class Pedido implements java.io.Serializable {
     }
 
 
-    public EstadoPedido getEstado() {
+    public iescamp.tienda.modelo.Pedidos.EstadoPedido getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoPedido estado) {
+    public void setEstado(iescamp.tienda.modelo.Pedidos.EstadoPedido estado) {
 
         this.estado = estado;
     }
@@ -64,11 +67,11 @@ public class Pedido implements java.io.Serializable {
         this.metodoPago = metodoPago;
     }
 
-    public ArrayList<LineaPedido> getLineasPedido() {
+    public ArrayList<iescamp.tienda.modelo.Pedidos.LineaPedido> getLineasPedido() {
         return lineasPedido;
     }
 
-    public void setLineasPedido(ArrayList<LineaPedido> lineasPedido) {
+    public void setLineasPedido(ArrayList<iescamp.tienda.modelo.Pedidos.LineaPedido> lineasPedido) {
         this.lineasPedido = lineasPedido;
     }
 
@@ -80,7 +83,7 @@ public class Pedido implements java.io.Serializable {
         this.DNI = DNI;
     }
     //metodo adicional
-    public void addLineaPedido(LineaPedido lineaPedido) {
+    public void addLineaPedido(iescamp.tienda.modelo.Pedidos.LineaPedido lineaPedido) {
         lineasPedido.add(lineaPedido);
     }
 

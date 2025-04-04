@@ -1,6 +1,9 @@
-package iescamp.tienda.modelo.Articulos;
+package iescamp.tienda.tienda.modelo.Articulos;
 
 import com.fasterxml.jackson.annotation.*;
+import iescamp.tienda.modelo.Articulos.Accesorio;
+import iescamp.tienda.modelo.Articulos.Material;
+import iescamp.tienda.modelo.Articulos.TipoAccesorio;
 
 import java.util.Objects;
 

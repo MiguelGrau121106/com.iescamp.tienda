@@ -1,4 +1,4 @@
-package iescamp.tienda.modelo.Articulos;
+package iescamp.tienda.tienda.modelo.Articulos;
 
 public enum TipoRopa {
 

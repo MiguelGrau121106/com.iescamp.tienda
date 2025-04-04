@@ -1,10 +1,12 @@
-package iescamp.tienda.dao;
+package iescamp.tienda.tienda.dao;
 
+import iescamp.tienda.dao.DBUtil;
+import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Articulos.Accesorio;
 import iescamp.tienda.modelo.Articulos.Ropa;
 
 
-import iescamp.tienda.dao.ArticuloDAO;
+import iescamp.tienda.tienda.dao.ArticuloDAO;
 import iescamp.tienda.modelo.Articulos.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import java.util.List;
 
         @Override
         public void insertar(Ropa ropa) {
-            try (Connection conn = DBUtil.getConnection()) {
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
                 ArticuloDAO Adao = new ArticuloDAO();
                 Adao.insertar(ropa);
                 String sql = "INSERT INTO ropa (cod_art, talla_ropa, tipo_cierre, impermeable, tipo_manga, estampada, tipo_pantalon, tiene_bolsillos, tipo_ropa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -62,7 +64,7 @@ import java.util.List;
         @Override
         public Ropa obtenerPorId(Integer id) {
 
-            try (Connection conn = DBUtil.getConnection()) {
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
 
                 String sql = "SELECT * FROM ropa, articulo where ropa.cod_art = articulo.cod_art and ropa.cod_art = ?";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -81,7 +83,7 @@ import java.util.List;
         public List<Ropa> obtenerTodos() {
             List<Ropa> ropaList = new ArrayList<>();
             String sql = "SELECT * FROM ropa, articulo where ropa.cod_art = articulo.cod_art";
-            try (Connection conn = DBUtil.getConnection();
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
                  Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery(sql)) {
                 while (rs.next()) {
@@ -98,7 +100,7 @@ import java.util.List;
             ArticuloDAO Adao = new ArticuloDAO();
             Adao.actualizar(ropa);
             String sql = "UPDATE ropa SET talla_ropa = ?, tipo_cierre = ?, impermeable = ?, tipo_manga = ?, estampada = ?, tipo_pantalon = ?, tiene_bolsillos = ?, tipo_ropa = ? WHERE cod_art = ?";
-            try (Connection conn = DBUtil.getConnection();
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, ropa.getTalla());
                 pstmt.setString(2, ropa.getTipoCierre());
@@ -145,7 +147,7 @@ import java.util.List;
             ArticuloDAO Adao = new ArticuloDAO();
             Adao.eliminar(id);
             String sql = "DELETE FROM ropa WHERE cod_art = ?";
-            try (Connection conn = DBUtil.getConnection();
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setInt(1, id);
                 pstmt.executeUpdate();
@@ -156,17 +158,20 @@ import java.util.List;
 
         @Override
         public Ropa construirDesdeResultSet(ResultSet rs) throws SQLException {
+            // Crear una instancia de MaterialDAO
+            MaterialDAO materialDAO = new MaterialDAO();
+            // Obtener los datos del ResultSet
+            Material material = materialDAO.obtenerPorId(rs.getInt("material"));
+            String nombre = rs.getString("nombre");
+            String imagen = rs.getString("imagen");
+            double precio = rs.getDouble("precio");
+            String marca = rs.getString("marca");
+            String descripcion = rs.getString("descripcion");
 
-            ArticuloDAO Adao = new ArticuloDAO();
-            Articulo art = Adao.construirDesdeResultSet(rs);
-            String nombre = art.getNombre();
-            double precio = art.getPrecio();
-            String marca = art.getMarca();
-            String descripcion = art.getDescripcion();
-            boolean activo = art.isActivo();
-            String imagen = art.getImagen();
-            String color = art.getColor();
-            Material material = art.getMaterial();
+
+            boolean activo = rs.getBoolean("activo");
+            String color = rs.getString("color");
+
 
             int cod_art = rs.getInt("cod_art");
             String talla = rs.getString("talla_ropa");

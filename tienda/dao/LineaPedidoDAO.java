@@ -1,5 +1,8 @@
-package iescamp.tienda.dao;
+package iescamp.tienda.tienda.dao;
 
+import iescamp.tienda.dao.DBUtil;
+import iescamp.tienda.dao.GenericDAO;
+import iescamp.tienda.dao.PedidoDAO;
 import iescamp.tienda.modelo.Pedidos.LineaPedido;
 import iescamp.tienda.modelo.Articulos.Articulo;
 import iescamp.tienda.modelo.Pedidos.Pedido;
@@ -13,7 +16,7 @@ public  class LineaPedidoDAO implements GenericDAO<LineaPedido, Integer> {
 
         @Override
         public void insertar(LineaPedido lineaPedido) {
-            try (Connection conn = DBUtil.getConnection()) {
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
                 String sql = "INSERT INTO linea_pedido (num_pedido, cod_art) VALUES (?, ?)";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setInt(1, lineaPedido.getPedido().getNumeroPedido());
@@ -27,7 +30,7 @@ public  class LineaPedidoDAO implements GenericDAO<LineaPedido, Integer> {
 
         @Override
         public LineaPedido obtenerPorId(Integer id) {
-            try (Connection conn = DBUtil.getConnection()) {
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
                 String sql = "SELECT * FROM linea_pedido WHERE id = ?";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setInt(1, id);
@@ -45,7 +48,7 @@ public  class LineaPedidoDAO implements GenericDAO<LineaPedido, Integer> {
         public List<LineaPedido> obtenerTodos() {
             List<LineaPedido> lineasPedido = new ArrayList<>();
             String sql = "SELECT * FROM linea_pedido";
-            try (Connection conn = DBUtil.getConnection();
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
                  Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery(sql)) {
                 while (rs.next()) {
@@ -60,7 +63,7 @@ public  class LineaPedidoDAO implements GenericDAO<LineaPedido, Integer> {
         @Override
         public void actualizar(LineaPedido lineaPedido) {
             String sql = "UPDATE linea_pedido SET num_pedido = ?, cod_art = ? WHERE num_pedido = ?";
-            try (Connection conn = DBUtil.getConnection();
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setInt(1, lineaPedido.getPedido().getNumeroPedido());
                 pstmt.setInt(2, lineaPedido.getArticulo().getCod_art());
@@ -75,7 +78,7 @@ public  class LineaPedidoDAO implements GenericDAO<LineaPedido, Integer> {
         @Override
         public void eliminar(Integer id) {
             String sql = "DELETE FROM linea_pedido WHERE num_pedido = ?";
-            try (Connection conn = DBUtil.getConnection();
+            try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setInt(1, id);
                 pstmt.executeUpdate();

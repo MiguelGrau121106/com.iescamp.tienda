@@ -1,6 +1,9 @@
-package iescamp.tienda.modelo.Articulos;
+package iescamp.tienda.tienda.modelo.Articulos;
 
 import com.fasterxml.jackson.annotation.*;
+import iescamp.tienda.modelo.Articulos.Accesorio;
+import iescamp.tienda.modelo.Articulos.Material;
+import iescamp.tienda.modelo.Articulos.Ropa;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,10 +19,10 @@ import java.util.Objects;
         @JsonSubTypes.Type(value = Ropa.class, name = "ropa")
 })
 
-public class Articulo implements Serializable {
+public abstract class Articulo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Material material;
+    private iescamp.tienda.modelo.Articulos.Material material;
     private int cod_art;
     private boolean activo;
 
@@ -40,11 +43,11 @@ public class Articulo implements Serializable {
         this.color = color;
     }
 
-    public Material getMaterial() {
+    public iescamp.tienda.modelo.Articulos.Material getMaterial() {
         return material;
     }
 
-    public void setMaterial(Material material) {
+    public void setMaterial(iescamp.tienda.modelo.Articulos.Material material) {
         this.material = material;
     }
 

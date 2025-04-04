@@ -1,6 +1,12 @@
-package iescamp.tienda.modelo.Articulos;
+package iescamp.tienda.tienda.modelo.Articulos;
 
 import com.fasterxml.jackson.annotation.*;
+import iescamp.tienda.modelo.Articulos.Articulo;
+import iescamp.tienda.modelo.Articulos.Camisa;
+import iescamp.tienda.modelo.Articulos.Chaqueta;
+import iescamp.tienda.modelo.Articulos.Material;
+import iescamp.tienda.modelo.Articulos.Pantalon;
+import iescamp.tienda.modelo.Articulos.TipoRopa;
 
 import java.util.Objects;
 
@@ -18,13 +24,13 @@ public class Ropa extends Articulo implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private String talla;
     private String tipoCierre;
-    private TipoRopa tipoRopa;
+    private iescamp.tienda.modelo.Articulos.TipoRopa tipoRopa;
 
-    public TipoRopa getTipoRopa() {
+    public iescamp.tienda.modelo.Articulos.TipoRopa getTipoRopa() {
         return tipoRopa;
     }
 
-    public void setTipoRopa(TipoRopa tipoRopa) {
+    public void setTipoRopa(iescamp.tienda.modelo.Articulos.TipoRopa tipoRopa) {
         this.tipoRopa = tipoRopa;
     }
 

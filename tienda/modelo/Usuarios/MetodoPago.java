@@ -1,4 +1,4 @@
-package iescamp.tienda.modelo.Usuarios;
+package iescamp.tienda.tienda.modelo.Usuarios;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

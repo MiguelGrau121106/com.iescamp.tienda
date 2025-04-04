@@ -1,6 +1,8 @@
-package iescamp.tienda.dao;
+package iescamp.tienda.tienda.dao;
 
 import iescamp.tienda.dao.*;
+import iescamp.tienda.dao.DBUtil;
+import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Pedidos.*;
 import iescamp.tienda.modelo.Usuarios.*;
 
@@ -12,7 +14,7 @@ public class PedidoDAO implements GenericDAO<Pedido, Integer> {
 
     @Override
     public void insertar(Pedido pedido) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             String sql = "INSERT INTO pedido (numero, fecha, dir_envio, estado, m_pago, DNI_cliente) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, pedido.getNumeroPedido());
@@ -29,7 +31,7 @@ public class PedidoDAO implements GenericDAO<Pedido, Integer> {
 
     @Override
     public Pedido obtenerPorId(Integer numero) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             String sql = "SELECT * FROM pedido WHERE numero = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, numero);
@@ -49,7 +51,7 @@ public class PedidoDAO implements GenericDAO<Pedido, Integer> {
     public List<Pedido> obtenerTodos() {
         List<Pedido> pedido = new ArrayList<>();
         String sql = "SELECT * FROM pedido";
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -66,7 +68,7 @@ public class PedidoDAO implements GenericDAO<Pedido, Integer> {
     public void actualizar(Pedido pedido) {
         String sql = "UPDATE pedido SET fecha = ?, dir_envio = ?, estado = ?, m_pago = ? WHERE numero = ?";
 
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setDate(1, java.sql.Date.valueOf(pedido.getFechaPedido())); //
@@ -87,7 +89,7 @@ public class PedidoDAO implements GenericDAO<Pedido, Integer> {
     public void eliminar (Integer numero){
         String sql = "DELETE FROM pedido WHERE numero = ?";
         try {
-            Connection conn = DBUtil.getConnection();
+            Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, numero);
             stmt.executeUpdate();

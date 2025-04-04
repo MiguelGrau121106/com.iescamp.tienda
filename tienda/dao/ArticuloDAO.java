@@ -1,4 +1,4 @@
-package iescamp.tienda.dao;
+package iescamp.tienda.tienda.dao;
 
 import iescamp.tienda.dao.DBUtil;
 import iescamp.tienda.dao.GenericDAO;
@@ -128,16 +128,6 @@ public class ArticuloDAO implements GenericDAO<Articulo, Integer> {
 
     @Override
     public Articulo construirDesdeResultSet (ResultSet rs) throws SQLException {
-        return new Articulo(
-                obtenerMaterialPorCodigo(rs.getInt("material")),
-                rs.getInt("cod_art"),
-                rs.getBoolean("activo"),
-                rs.getString("color"),
-                rs.getString("imagen"),
-                rs.getString("nombre"),
-                rs.getDouble("precio"),
-                rs.getString("marca"),
-                rs.getString("descripcion")
-        );
+        return null;
     }
 }

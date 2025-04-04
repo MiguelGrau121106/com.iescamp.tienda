@@ -1,5 +1,7 @@
-package iescamp.tienda.dao;
+package iescamp.tienda.tienda.dao;
 
+import iescamp.tienda.dao.DBUtil;
+import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Usuarios.Cliente;
 import iescamp.tienda.modelo.Usuarios.MetodoPago;
 
@@ -7,12 +9,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDAO implements GenericDAO<Cliente, String>{
+public class ClienteDAO implements GenericDAO<Cliente, String> {
 
 
     @Override
     public void insertar(Cliente obj) {
-        try(Connection conn = DBUtil.getConnection()) {
+        try(Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO cliente (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, activo, pass, saldo_cuenta, cum_pedidos, dir_envio, tarjeta_fidelizacion, m_pago) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pstmt.setString(1, obj.getDNI());
             pstmt.setString(2,  obj.getNombre());
@@ -43,7 +45,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String>{
 
     @Override
     public Cliente obtenerPorId(String DNI) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cliente WHERE DNI = ?");
             pstmt.setString(1, DNI);
             ResultSet rs = pstmt.executeQuery();
@@ -62,7 +64,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String>{
     public List<Cliente> obtenerTodos() {
         List<Cliente> cliente = new ArrayList<>();
         String sql = "SELECT * FROM cliente";
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -77,7 +79,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String>{
 
     @Override
     public void actualizar(Cliente obj) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("UPDATE cliente SET DNI = ?, nombre = ?, apellidos = ?, telefono = ?, f_nacimiento = ?, direccion = ?, email = ?, activo = ?, pass = ?, saldo_cuenta = ?, cum_pedidos = ?, dir_envio = ?, tarjeta_fidelizacion = ?, m_pago = ? WHERE DNI = ?");
             pstmt.setString(1, obj.getDNI());
             pstmt.setString(2,  obj.getNombre());
@@ -110,7 +112,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String>{
 
     @Override
     public void eliminar(String DNI) {
-        try  (Connection conn = DBUtil.getConnection()) {
+        try  (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM cliente WHERE DNI = ?");
             pstmt.setString(1, DNI);
             int filasAfectadas = pstmt.executeUpdate();
@@ -127,7 +129,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String>{
     }
     private MetodoPago obtenerMPagoPorCodigo(int codigo) throws SQLException {
         String sql = "SELECT * FROM metodo_pago WHERE codigo = ?";
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, codigo);
             ResultSet rs = pstmt.executeQuery();
@@ -159,7 +161,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String>{
     }
 
     public Cliente autenticarCliente(String email, String pass) {
-        try (Connection conn = DBUtil.getConnection()) {
+        try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cliente WHERE email = ? AND pass = ?");
             pstmt.setString(1, email);
             pstmt.setString(2, pass);
