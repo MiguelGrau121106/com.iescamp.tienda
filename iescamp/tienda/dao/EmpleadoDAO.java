@@ -1,6 +1,7 @@
 package iescamp.tienda.dao;
 
 import iescamp.tienda.modelo.Usuarios.Cliente;
+import iescamp.tienda.modelo.Usuarios.Departamento;
 import iescamp.tienda.modelo.Usuarios.Empleado;
 
 import java.sql.*;
@@ -116,18 +117,22 @@ public class EmpleadoDAO implements GenericDAO<Empleado, String>{
 
     @Override
     public Empleado construirDesdeResultSet(ResultSet rs) throws SQLException {
+        Departamento departamento = new DepartamentoDAO().obtenerPorId(rs.getInt("dpto"));
+
         return new Empleado(
                 rs.getString("DNI"),
                 rs.getString("nombre"),
                 rs.getString("apellidos"),
-                rs.getString("telefono"),
-                rs.getString("email"),
-                rs.getString("pass"),
-                rs.getDate("f_nacimiento").toLocalDate(),
                 rs.getString("direccion"),
+                rs.getString("email"),
+                rs.getString("telefono"),
+                rs.getDate("f_nacimiento").toLocalDate(),
+                rs.getString("pass"),
+
+
                 rs.getBoolean("activo"),
                 rs.getBoolean("tiene_privilegios"),
-                rs.getInt("dpto")
+                departamento
         );
     }
     public Empleado obtenerPorEmail(String email) {

@@ -132,7 +132,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String>{
             pstmt.setInt(1, codigo);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return new MetodoPago(rs.getInt("codigo"), rs.getString("denominacion"));
+                return new MetodoPago(rs.getInt("codigo"), rs.getString("descripcion"));
             }
         }
         return null;
@@ -175,11 +175,10 @@ public class ClienteDAO implements GenericDAO<Cliente, String>{
         }
     }
 
-    public Cliente obtenerPorEmail(String email, String pass) {
+    public Cliente obtenerPorEmail(String email) {
         try (Connection conn = DBUtil.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cliente WHERE email = ? AND pass = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cliente WHERE email = ?");
             pstmt.setString(1, email);
-            pstmt.setString(2, pass);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return construirDesdeResultSet(rs);

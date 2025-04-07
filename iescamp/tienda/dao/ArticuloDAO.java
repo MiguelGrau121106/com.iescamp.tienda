@@ -28,16 +28,16 @@ public class ArticuloDAO implements GenericDAO<Articulo, Integer> {
             pstmt.setInt(9, articulo.getMaterial().getCodigo());
             pstmt.executeUpdate();
 
-            int filasAfectadas = pstmt.executeUpdate();
-            if (filasAfectadas > 0) {
-                System.out.println("Se ha insertado el articulo correctamente.");
-            } else {
-                System.out.println("No se insertó ningún articulo.");
-            }
+
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+
+
 
     }
 

@@ -95,21 +95,23 @@ public  class LineaPedidoDAO implements GenericDAO<LineaPedido, Integer> {
             );
         }
 
-        public List<LineaPedido> obtenerLineasPedidoPorPedido(int num_pedido) {
-            List<LineaPedido> lineasPedido = new ArrayList<>();
-            String sql = "SELECT * FROM linea_pedido WHERE num_pedido = ?";
-            try (Connection conn = DBUtil.getConnection();
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setInt(1, num_pedido);
-                ResultSet rs = pstmt.executeQuery();
-                while (rs.next()) {
-                    lineasPedido.add(construirDesdeResultSet(rs));
+
+            public List<LineaPedido> obtenerLineasPedidoPorPedido(int numeroPedido) {
+
+                List<LineaPedido> lineasPedido = new ArrayList<>();
+                String sql = "SELECT * FROM linea_pedido WHERE num_pedido = ?";
+                try (Connection conn = DBUtil.getConnection();
+                     PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                    pstmt.setInt(1, numeroPedido);
+                    ResultSet rs = pstmt.executeQuery();
+                    while (rs.next()) {
+                        lineasPedido.add(construirDesdeResultSet(rs));
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+                return lineasPedido;
             }
-            return lineasPedido;
-        }
     }
 
 

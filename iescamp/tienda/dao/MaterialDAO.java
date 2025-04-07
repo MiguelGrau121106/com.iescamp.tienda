@@ -69,14 +69,12 @@ public class MaterialDAO implements GenericDAO<Material, Integer> {
         }
     }
 
-
-
     @Override
-    public void eliminar(Integer id) {
+    public void eliminar(Integer codigo) {
         try (Connection conn = DBUtil.getConnection()) {
             String sql = "DELETE FROM material WHERE codigo = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, codigo);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,19 +89,19 @@ public class MaterialDAO implements GenericDAO<Material, Integer> {
         );
     }
 
-    public Material obtenerPorDenominacion(String descripcion) {
+    public Material obtenerPorDenominacion(String denominacion) {
         try (Connection conn = DBUtil.getConnection()) {
             String sql = "SELECT * FROM material WHERE denominacion = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, descripcion);
+            pstmt.setString(1, denominacion);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return construirDesdeResultSet(rs);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
         return null;
     }
 }
-

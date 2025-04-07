@@ -17,6 +17,10 @@ public class Clientela implements java.io.Serializable {
         return clientes;
     }
 
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
     public Optional<Cliente> getClienteByDNI(String DNI) {
         return clientes.stream().filter(c -> c.getDNI().equals(DNI)).findFirst();
     }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GenericDAO<T, K> {
     void insertar(T obj);
-    T obtenerPorId(K id); //obtener por la clave primaria
+    T obtenerPorId(K id); //obtener por la clave primariaç
     List<T> obtenerTodos();
     void actualizar(T obj);
     void eliminar(K id);
