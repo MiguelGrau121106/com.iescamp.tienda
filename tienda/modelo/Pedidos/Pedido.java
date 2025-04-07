@@ -1,10 +1,7 @@
-package iescamp.tienda.tienda.modelo.Pedidos;
+package iescamp.tienda.modelo.Pedidos;
 
 
 
-
-import iescamp.tienda.modelo.Pedidos.EstadoPedido;
-import iescamp.tienda.modelo.Pedidos.LineaPedido;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

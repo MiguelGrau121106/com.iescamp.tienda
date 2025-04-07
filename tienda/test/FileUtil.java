@@ -1,18 +1,13 @@
-package iescamp.tienda.tienda.test;
+package iescamp.tienda.test;
 
-import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 import iescamp.tienda.modelo.Articulos.*;
-import iescamp.tienda.modelo.Articulos.Articulo;
-import iescamp.tienda.modelo.Articulos.Catalogo;
 import iescamp.tienda.modelo.Pedidos.Ventas;
 import iescamp.tienda.modelo.Usuarios.*;
-import iescamp.tienda.modelo.Usuarios.Clientela;
-import iescamp.tienda.modelo.Usuarios.Plantilla;
 
 import java.io.*;
 import java.time.LocalDate;

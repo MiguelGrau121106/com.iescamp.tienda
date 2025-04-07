@@ -1,8 +1,7 @@
-package iescamp.tienda.tienda.modelo.Usuarios;
+package iescamp.tienda.modelo.Usuarios;
 
-import com.fasterxml.jackson.annotation.*;
-import iescamp.tienda.modelo.Usuarios.Departamento;
-import iescamp.tienda.modelo.Usuarios.Usuario;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 public class Empleado extends Usuario implements java.io.Serializable {

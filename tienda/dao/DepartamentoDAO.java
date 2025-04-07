@@ -1,7 +1,5 @@
-package iescamp.tienda.tienda.dao;
+package iescamp.tienda.dao;
 
-import iescamp.tienda.dao.DBUtil;
-import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Usuarios.Departamento;
 
 import java.sql.*;

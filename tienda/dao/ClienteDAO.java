@@ -1,7 +1,5 @@
-package iescamp.tienda.tienda.dao;
+package iescamp.tienda.dao;
 
-import iescamp.tienda.dao.DBUtil;
-import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Usuarios.Cliente;
 import iescamp.tienda.modelo.Usuarios.MetodoPago;
 
@@ -15,7 +13,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String> {
     @Override
     public void insertar(Cliente obj) {
         try(Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO cliente (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, activo, pass, saldo_cuenta, cum_pedidos, dir_envio, tarjeta_fidelizacion, m_pago) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO cliente (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, activo, pass, saldo_cuenta, num_pedidos, dir_envio, tarjeta_fidelizacion, m_pago) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pstmt.setString(1, obj.getDNI());
             pstmt.setString(2,  obj.getNombre());
             pstmt.setString(3, obj.getApellidos());
@@ -80,7 +78,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String> {
     @Override
     public void actualizar(Cliente obj) {
         try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE cliente SET DNI = ?, nombre = ?, apellidos = ?, telefono = ?, f_nacimiento = ?, direccion = ?, email = ?, activo = ?, pass = ?, saldo_cuenta = ?, cum_pedidos = ?, dir_envio = ?, tarjeta_fidelizacion = ?, m_pago = ? WHERE DNI = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE cliente SET DNI = ?, nombre = ?, apellidos = ?, telefono = ?, f_nacimiento = ?, direccion = ?, email = ?, activo = ?, pass = ?, saldo_cuenta = ?, num_pedidos = ?, dir_envio = ?, tarjeta_fidelizacion = ?, m_pago = ? WHERE DNI = ?");
             pstmt.setString(1, obj.getDNI());
             pstmt.setString(2,  obj.getNombre());
             pstmt.setString(3, obj.getApellidos());
@@ -177,11 +175,11 @@ public class ClienteDAO implements GenericDAO<Cliente, String> {
         }
     }
 
-    public Cliente obtenerPorEmail(String email, String pass) {
+    public Cliente obtenerPorEmail(String email) {
         try (Connection conn = DBUtil.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cliente WHERE email = ? AND pass = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cliente WHERE email = ?");
             pstmt.setString(1, email);
-            pstmt.setString(2, pass);
+
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return construirDesdeResultSet(rs);

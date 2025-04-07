@@ -1,8 +1,9 @@
-package iescamp.tienda.tienda.modelo.Usuarios;
+package iescamp.tienda.modelo.Usuarios;
 
-import com.fasterxml.jackson.annotation.*;
-import iescamp.tienda.modelo.Usuarios.Cliente;
-import iescamp.tienda.modelo.Usuarios.Empleado;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.io.Serializable;
 import java.time.LocalDate;

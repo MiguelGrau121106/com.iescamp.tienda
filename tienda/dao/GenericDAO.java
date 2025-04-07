@@ -1,4 +1,4 @@
-package iescamp.tienda.tienda.dao;
+package iescamp.tienda.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

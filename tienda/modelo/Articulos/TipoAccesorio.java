@@ -1,4 +1,4 @@
-package iescamp.tienda.tienda.modelo.Articulos;
+package iescamp.tienda.modelo.Articulos;
 
 public enum TipoAccesorio {
 

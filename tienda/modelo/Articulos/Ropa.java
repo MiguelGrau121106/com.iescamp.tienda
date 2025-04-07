@@ -1,12 +1,8 @@
-package iescamp.tienda.tienda.modelo.Articulos;
+package iescamp.tienda.modelo.Articulos;
 
-import com.fasterxml.jackson.annotation.*;
-import iescamp.tienda.modelo.Articulos.Articulo;
-import iescamp.tienda.modelo.Articulos.Camisa;
-import iescamp.tienda.modelo.Articulos.Chaqueta;
-import iescamp.tienda.modelo.Articulos.Material;
-import iescamp.tienda.modelo.Articulos.Pantalon;
-import iescamp.tienda.modelo.Articulos.TipoRopa;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import java.util.Objects;
 

@@ -1,10 +1,6 @@
-package iescamp.tienda.tienda.modelo.Usuarios;
-
-import iescamp.tienda.modelo.Usuarios.Cliente;
-import iescamp.tienda.modelo.Usuarios.MetodoPago;
+package iescamp.tienda.modelo.Usuarios;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class Clientela implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
@@ -13,6 +9,10 @@ public class Clientela implements java.io.Serializable {
     // Create
     public void addCliente(iescamp.tienda.modelo.Usuarios.Cliente cliente) {
         clientes.add(cliente);
+    }
+
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
     }
 
     // Read

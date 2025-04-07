@@ -1,10 +1,8 @@
-package iescamp.tienda.tienda.dao;
+package iescamp.tienda.dao;
 
-import iescamp.tienda.dao.*;
-import iescamp.tienda.dao.DBUtil;
-import iescamp.tienda.dao.GenericDAO;
-import iescamp.tienda.modelo.Pedidos.*;
-import iescamp.tienda.modelo.Usuarios.*;
+import iescamp.tienda.modelo.Pedidos.EstadoPedido;
+import iescamp.tienda.modelo.Pedidos.Pedido;
+import iescamp.tienda.modelo.Usuarios.Cliente;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -71,7 +69,7 @@ public class PedidoDAO implements GenericDAO<Pedido, Integer> {
         try (Connection conn = iescamp.tienda.dao.DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setDate(1, java.sql.Date.valueOf(pedido.getFechaPedido())); //
+            stmt.setDate(1, Date.valueOf(pedido.getFechaPedido())); //
             stmt.setString(2, pedido.getDireccionEntrega());
             stmt.setString(3, pedido.getEstado().getDescripcion());
             stmt.setInt(4, pedido.getMetodoPago());

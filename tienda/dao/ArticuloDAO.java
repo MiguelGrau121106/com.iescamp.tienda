@@ -1,4 +1,4 @@
-package iescamp.tienda.tienda.dao;
+package iescamp.tienda.dao;
 
 import iescamp.tienda.dao.DBUtil;
 import iescamp.tienda.dao.GenericDAO;
@@ -29,14 +29,9 @@ public class ArticuloDAO implements GenericDAO<Articulo, Integer> {
             pstmt.executeUpdate();
 
 
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
 
 
     }
@@ -83,11 +78,11 @@ public class ArticuloDAO implements GenericDAO<Articulo, Integer> {
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, articulo.getNombre());
-            stmt.setDouble(2,articulo.getPrecio());
+            stmt.setDouble(2, articulo.getPrecio());
             stmt.setString(3, articulo.getMarca());
             stmt.setString(4, articulo.getDescripcion());
             stmt.setBoolean(5, articulo.isActivo());
-            stmt.setString(6,articulo.getImagen());
+            stmt.setString(6, articulo.getImagen());
             stmt.setString(7, articulo.getColor());
             stmt.setInt(8, articulo.getMaterial().getCodigo());
             stmt.setInt(9, articulo.getCod_art());
@@ -101,7 +96,7 @@ public class ArticuloDAO implements GenericDAO<Articulo, Integer> {
 
 
     @Override
-    public void eliminar (Integer cod_art){
+    public void eliminar(Integer cod_art) {
         String sql = "DELETE FROM articulo WHERE cod_art = ?";
         try {
             Connection conn = DBUtil.getConnection();
@@ -112,6 +107,7 @@ public class ArticuloDAO implements GenericDAO<Articulo, Integer> {
             e.printStackTrace();
         }
     }
+
     //metodo auxiliar para poder obtener material desde su codigo.
     private Material obtenerMaterialPorCodigo(int codigo) throws SQLException {
         String sql = "SELECT * FROM material WHERE codigo = ?";
@@ -127,7 +123,9 @@ public class ArticuloDAO implements GenericDAO<Articulo, Integer> {
     }
 
     @Override
-    public Articulo construirDesdeResultSet (ResultSet rs) throws SQLException {
+    public Articulo construirDesdeResultSet(ResultSet rs) throws SQLException {
+
         return null;
+
     }
 }

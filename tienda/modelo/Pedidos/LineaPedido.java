@@ -1,6 +1,5 @@
-package iescamp.tienda.tienda.modelo.Pedidos;
+package iescamp.tienda.modelo.Pedidos;
 import iescamp.tienda.modelo.Articulos.Articulo;
-import iescamp.tienda.modelo.Pedidos.Pedido;
 
 import java.util.Objects;
 
@@ -11,14 +10,14 @@ public class LineaPedido implements java.io.Serializable {
 
 
     private Articulo articulo;
-    private iescamp.tienda.modelo.Pedidos.Pedido pedido;
+    private Pedido pedido;
 
 
-    public iescamp.tienda.modelo.Pedidos.Pedido getPedido() {
+    public Pedido getPedido() {
         return pedido;
     }
 
-    public void setPedido(iescamp.tienda.modelo.Pedidos.Pedido pedido) {
+    public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
 

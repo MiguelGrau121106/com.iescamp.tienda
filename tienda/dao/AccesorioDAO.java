@@ -1,12 +1,10 @@
-package iescamp.tienda.tienda.dao;
+package iescamp.tienda.dao;
 
-import iescamp.tienda.dao.DBUtil;
-import iescamp.tienda.dao.GenericDAO;
 import iescamp.tienda.modelo.Articulos.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import iescamp.tienda.dao.*;
 
 public class AccesorioDAO implements GenericDAO<Accesorio, Integer> {
 

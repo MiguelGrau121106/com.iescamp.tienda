@@ -1,8 +1,8 @@
-package iescamp.tienda.tienda.test;
+package iescamp.tienda.test;
 
 
 public class Test {
-    public static void main(java.lang.String[] args){
+    public static void main(String[] args){
 
     }
 }

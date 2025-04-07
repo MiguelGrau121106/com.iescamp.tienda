@@ -1,10 +1,12 @@
-package iescamp.tienda.tienda.test;
+package iescamp.tienda.test;
 
 import iescamp.tienda.modelo.Articulos.*;
 import iescamp.tienda.modelo.Pedidos.LineaPedido;
 import iescamp.tienda.modelo.Pedidos.Pedido;
-import iescamp.tienda.modelo.Usuarios.*;
-import iescamp.tienda.test.ConsoleReader;
+import iescamp.tienda.modelo.Usuarios.Cliente;
+import iescamp.tienda.modelo.Usuarios.Departamento;
+import iescamp.tienda.modelo.Usuarios.Empleado;
+import iescamp.tienda.modelo.Usuarios.MetodoPago;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

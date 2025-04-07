@@ -1,4 +1,4 @@
-package iescamp.tienda.tienda.test;
+package iescamp.tienda.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,24 +1,22 @@
-package iescamp.tienda.tienda.modelo.Articulos;
+package iescamp.tienda.modelo.Articulos;
 
-import com.fasterxml.jackson.annotation.*;
-import iescamp.tienda.modelo.Articulos.Articulo;
-import iescamp.tienda.modelo.Articulos.Material;
-import iescamp.tienda.modelo.Articulos.TipoAccesorio;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 public class Accesorio extends Articulo implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private String estilo;
     private boolean esPersonalizado;
-    private iescamp.tienda.modelo.Articulos.TipoAccesorio tipoAccesorio;
+    private TipoAccesorio tipoAccesorio;
 
     //GETTER Y SETTER
 
-    public iescamp.tienda.modelo.Articulos.TipoAccesorio getTipoAccesorio() {
+    public TipoAccesorio getTipoAccesorio() {
         return tipoAccesorio;
     }
 
-    public void setTipoAccesorio(iescamp.tienda.modelo.Articulos.TipoAccesorio tipoAccesorio) {
+    public void setTipoAccesorio(TipoAccesorio tipoAccesorio) {
         this.tipoAccesorio = tipoAccesorio;
     }
 

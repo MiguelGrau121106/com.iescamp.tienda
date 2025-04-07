@@ -1,4 +1,4 @@
-package iescamp.tienda.tienda.test;
+package iescamp.tienda.test;
 
 public class TestUtil {
 

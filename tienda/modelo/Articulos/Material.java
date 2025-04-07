@@ -1,6 +1,7 @@
-package iescamp.tienda.tienda.modelo.Articulos;
+package iescamp.tienda.modelo.Articulos;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Objects;
