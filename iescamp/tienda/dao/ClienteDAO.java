@@ -13,7 +13,7 @@ public class ClienteDAO implements GenericDAO<Cliente, String>{
     @Override
     public void insertar(Cliente obj) {
         try(Connection conn = DBUtil.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO cliente (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, activo, pass, saldo_cuenta, cum_pedidos, dir_envio, tarjeta_fidelizacion, m_pago) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO cliente (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, activo, pass, saldo_cuenta, num_pedidos, dir_envio, tarjeta_fidelizacion, m_pago) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pstmt.setString(1, obj.getDNI());
             pstmt.setString(2,  obj.getNombre());
             pstmt.setString(3, obj.getApellidos());

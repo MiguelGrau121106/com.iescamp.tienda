@@ -10,6 +10,7 @@ import iescamp.tienda.modelo.Pedidos.Ventas;
 import iescamp.tienda.modelo.Usuarios.*;
 
 import java.io.IOException;
+import java.sql.ClientInfoStatus;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class TiendaConsola {
     private static final EmpleadoDAO empleadoDAO = new EmpleadoDAO();
     private static final ClienteDAO clienteDAO = new ClienteDAO();
     private static final PedidoDAO pedidoDAO = new PedidoDAO();
+    private static final MetodoPagoDAO metodoPagoDAO = new MetodoPagoDAO();
 
 
     public static void main(String[] args) {
@@ -721,21 +723,49 @@ public class TiendaConsola {
                 break;
 
             case 6:
-                Cliente cliente = ConsoleUtil.crearCliente(ConsoleUtil.crearMetodoPago());
-                clienteDAO.insertar(cliente);
-                clientela.addCliente(cliente);
-                System.out.println("Empleado añadido y plantilla recargada.");
+                System.out.println("Crear metodo de pago tambien o añadir a uno existente?");
+                System.out.println("1. Crear \n2. Añadir");
+                int opcionCrear = ConsoleReader.readInt();
+                if (opcionCrear == 1) {
+                    MetodoPago metodoPago = ConsoleUtil.crearMetodoPago();
+                    metodoPagoDAO.insertar(metodoPago);
+                    metodosPago.add(metodoPago);
+                    Cliente cliente = ConsoleUtil.crearCliente(metodoPago);
+                    clientela.addCliente(cliente);
+                    clienteDAO.insertar(cliente);
+                    System.out.println("Cliente añadido y plantilla recargada.");
+                } else if (opcionCrear == 2) {
+                    System.out.println("Introduce el nombre del metodo de pago: ");
+                    MetodoPago metodoPago = metodoPagoDAO.obtenerPorDescripcion(ConsoleReader.readString());
+                    Cliente cliente = ConsoleUtil.crearCliente(metodoPago);
+                    clientela.addCliente(cliente);
+                    clienteDAO.insertar(cliente);
+                    System.out.println("Cliente añadido y plantilla recargada.");
+                }
                 menuBaseDatosClientes();
                 break;
 
             case 7:
+                System.out.println("¿El Metodo de Pago ya existe?1. SI 2. NO");
+                int opcionMod = ConsoleReader.readInt();
+                MetodoPago metodoPago;
+                if (opcionMod == 1) {
+                    System.out.println("Introduce el nombre del metodo de pago:");
+                    metodoPago = metodoPagoDAO.obtenerPorDescripcion(ConsoleReader.readString());
+                    System.out.println(metodoPago);
+                } else {
+                    metodoPago = ConsoleUtil.crearMetodoPago();
+                    metodoPagoDAO.insertar(metodoPago);
+                    metodosPago.add(metodoPago);
+                }
                 System.out.println("Introduce el DNI del cliente a modificar:");
                 String dniMod = ConsoleReader.readString();
                 Cliente clienteMod = clienteDAO.obtenerPorId(dniMod);
                 if (clienteMod != null) {
-                    Cliente actualizado = ConsoleUtil.crearCliente(ConsoleUtil.crearMetodoPago());
+
+                    Cliente actualizado = ConsoleUtil.crearCliente(metodoPago);
                     clienteDAO.actualizar(actualizado);
-                    clientela.updateCliente(clienteMod);
+                    clientela.updateCliente(actualizado);
                 } else {
                     System.out.println("Cliente no encontrado.");
                 }
@@ -743,16 +773,29 @@ public class TiendaConsola {
                 break;
 
             case 8:
+                System.out.println("¿El metodo de pago ya existe? 1. SI 2. NO");
+                int opcionMod2 = ConsoleReader.readInt();
+                MetodoPago metodoPago2;
+                if (opcionMod2 == 1) {
+                    System.out.println("Introduce el nombre del metodo de pago:");
+                    metodoPago2 = metodoPagoDAO.obtenerPorDescripcion(ConsoleReader.readString());
+                    System.out.println(metodoPago2);
+                } else {
+                    metodoPago2 = ConsoleUtil.crearMetodoPago();
+                    metodoPagoDAO.insertar(metodoPago2);
+                    metodosPago.add(metodoPago2);
+                }
                 System.out.println("Introduce el correo del cliente a modificar:");
                 String correoMod = ConsoleReader.readString();
-                Cliente clienteCorreo = clienteDAO.obtenerPorEmail(correoMod);
-                if (clienteCorreo != null) {
-                    Cliente actualizadoCorreo = ConsoleUtil.crearCliente(ConsoleUtil.crearMetodoPago());
-                    clienteDAO.actualizar(actualizadoCorreo);
-                    clientela.updateCliente(clienteCorreo);
+                Cliente clienteMod2 = clienteDAO.obtenerPorEmail(correoMod);
+                if (clienteMod2 != null) {
+                    Cliente actualizado = ConsoleUtil.crearCliente(metodoPago2);
+                    clienteDAO.actualizar(actualizado);
+                    clientela.updateCliente(actualizado);
                 } else {
                     System.out.println("Cliente no encontrado.");
                 }
+                menuBaseDatosClientes();
                 break;
 
             case 9:
