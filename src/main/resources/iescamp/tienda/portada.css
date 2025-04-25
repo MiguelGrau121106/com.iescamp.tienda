@@ -1,0 +1,103 @@
+#anchor-pane-main{
+    -fx-background-color: lightblue;
+    -fx-font-size: 26px;
+    -fx-font-family: "Arial";
+
+}
+
+#imgLogo{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    
+    -fx-content-display: center;
+    -fx-indent: 520px;
+    -fx-alignment: center;
+
+}
+
+#menu{
+    -fx-alignment: left;
+}
+
+#h-box-header{
+    -fx-background-color: white;
+    -fx-font-size: 22px;
+    -fx-font-family: "Arial";
+    -fx-padding: 10px;
+    -fx-spacing: 150px;
+    -fx-alignment: center;
+}
+
+#menu{
+    -fx-padding-right: 40px;
+}
+
+#h-box-icons{
+    -fx-spacing: 20px;
+}
+
+.icon-header{
+
+
+        -fx-background-color: transparent;
+        -fx-border-color: transparent;
+        -fx-cursor: hand;
+        -fx-padding: 5;
+
+
+
+
+}
+
+#Ropa{
+    -fx-background-image: url("images/ropa.jpg");
+    -fx-background-size: cover;
+    -fx-font-weight: 900;
+}
+
+#Accesorios{
+    -fx-background-image: url("images/accesorio.jpg");
+    -fx-background-size: cover;
+    -fx-font-weight: 900;
+}
+
+#Footer{
+    -fx-background-color: white;
+}
+
+#Footer{
+    -fx-margin: 40px;
+}
+
+.TextoTituloAyuda{
+    -fx-font-weight: 700;
+    -fx-font-size: 17px;
+    -fx-text-fill: black;
+}
+
+.TextoAyuda{
+    -fx-text-fill: black;
+    -fx-font-size: 15px;
+}
+
+#Creadores{
+    -fx-background-color: white;
+
+    
+    -fx-padding: 10px;
+    -fx-spacing: 150px;
+    -fx-alignment: center;
+}
+
+#menu{
+    -fx-padding-left: 10px;
+    -fx-background-color: white;
+
+}
+
+.textoMenu{
+    -fx-text-overflow: clip;
+    -fx-wrap-text: false;
+    -fx-min-width: 0px;
+}
