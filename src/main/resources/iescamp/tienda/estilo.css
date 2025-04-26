@@ -1,0 +1,70 @@
+/* Fondo difuminado */
+.vbox {
+    -fx-background-color: linear-gradient(to bottom right, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 0);
+
+}
+
+/* Texto grande del título */
+.label {
+    -fx-font-family: "Arial";
+}
+
+.label#titulo {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+/* TextFields y PasswordFields */
+.text-field, .password-field {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #ccc;
+    -fx-padding: 8 12;
+}
+
+/* Botones principales */
+.button {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+/* Botón hover */
+.button:hover {
+    -fx-background-color: #333;
+}
+
+/* Enlaces */
+.hyperlink {
+    -fx-text-fill: #444;
+    -fx-underline: true;
+}
+
+/* Sección del pie de página */
+.hbox {
+    -fx-background-color: white;
+    -fx-padding: 10 30;
+}
+
+.vbox > .label:first-child {
+    -fx-font-weight: bold;
+}
+
+/* Iconos (rectángulos y círculos de métodos de pago y redes sociales) */
+.rectangle, .circle {
+    -fx-fill: lightgray;
+}
+
+#AnchorPane{
+
+
+}
+
+
+
+
+
