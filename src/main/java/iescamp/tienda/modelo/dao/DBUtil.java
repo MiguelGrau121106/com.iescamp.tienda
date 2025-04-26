@@ -15,7 +15,7 @@ public class DBUtil {
 
     // Usuario y contraseña para acceder a la base de datos
     private static final String USUARIO = "root";
-    private static final String CONTRASENA = "monolito06";
+    private static final String CONTRASENA = "MySQL24-25";
 
     /**
      * Devuelve una nueva conexión a la base de datos.
